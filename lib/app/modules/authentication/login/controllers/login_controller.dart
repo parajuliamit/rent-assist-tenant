@@ -1,20 +1,18 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class LoginController extends GetxController {
-  //TODO: Implement LoginController
+  final isLoading = false.obs;
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
 
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
+  Future<void> login() async {
+    String email = emailController.text.trim();
+    String password = passwordController.text.trim();
+    if (email.isEmpty || password.isEmpty) {
+      Get.rawSnackbar(message: 'All fields are required');
+      return;
+    }
+    isLoading(true);
   }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {}
-  void increment() => count.value++;
 }
