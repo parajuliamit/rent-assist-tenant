@@ -37,6 +37,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: "Rent Assist - Tenant",
       theme: ThemeData(
+          primarySwatch: primaryColor,
           primaryColor: kPrimaryColor,
           floatingActionButtonTheme: const FloatingActionButtonThemeData(
             backgroundColor: kPrimaryColor,

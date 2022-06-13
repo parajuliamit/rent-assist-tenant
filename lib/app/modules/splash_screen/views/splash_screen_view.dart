@@ -16,7 +16,7 @@ class SplashScreenView extends GetView<SplashScreenController> {
       body: Center(
           child: ElevatedButton(
               onPressed: () {
-                Get.toNamed(Routes.LOGIN);
+                Get.offNamed(Routes.LOGIN);
               },
               child: Text('Go To Login'))),
     );

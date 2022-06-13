@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:tenant_app/constants.dart';
+import 'package:tenant_app/app/utils/constants.dart';
 
 class PasswordField extends StatefulWidget {
-  const PasswordField(this.label, {required this.controller});
+  const PasswordField(this.label,
+      {required this.controller, this.errorMessage = ''});
 
   final String label;
   final TextEditingController controller;
+  final String errorMessage;
 
   @override
   State<PasswordField> createState() => _PasswordFieldState();
@@ -18,12 +20,12 @@ class _PasswordFieldState extends State<PasswordField> {
     return TextField(
       controller: widget.controller,
       obscureText: !_isVisible,
-      style: const TextStyle(fontWeight: FontWeight.bold),
+      // style: const TextStyle(fontWeight: FontWeight.bold),
       cursorColor: Colors.black,
+
       decoration: InputDecoration(
         prefixIcon: const Icon(
           Icons.key_outlined,
-          color: blueColor,
         ),
         suffixIcon: InkWell(
           onTap: () {
@@ -40,8 +42,9 @@ class _PasswordFieldState extends State<PasswordField> {
         labelStyle:
             const TextStyle(color: Colors.grey, fontWeight: FontWeight.normal),
         focusedBorder: const UnderlineInputBorder(
-          borderSide: BorderSide(color: Colors.white, width: 2),
+          borderSide: BorderSide(color: kPrimaryColor, width: 2),
         ),
+        errorText: widget.errorMessage.isEmpty ? null : widget.errorMessage,
       ),
     );
   }
