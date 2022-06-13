@@ -1,57 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 const baseUrl = "https://";
 
-const kPrimaryColor = Colors.blue;
-const kSecondaryColor = Colors.orange;
+const kPrimaryColor = Color(0xFF83BCA9);
+const kDarkGreen = Color(0xFF3E5641);
+// const kLightGreen = Color(0xFF83BCA9);
+const kOrangeColor = Color(0xFFD36135);
+const kChestnutColor = Color(0xFFA24936);
 const kGreyColor = Color(0xFFC8CACD);
 const kDarkGreyColor = Color(0xFF696969);
+const kWhiteColor = Colors.white;
 
-void showSnackbar(String message,
-    {bool isError = false, bool isBottom = true, Duration? time}) async {
-  await Get.closeCurrentSnackbar();
-  Get.snackbar(
-    isError ? 'Error' : 'Success',
-    message,
-    duration: time ?? const Duration(seconds: 3),
-    snackPosition: isBottom ? SnackPosition.BOTTOM : SnackPosition.TOP,
-    colorText: Colors.white,
-    isDismissible: true,
-    margin: const EdgeInsets.all(10),
-    backgroundColor: isError
-        ? Colors.red.shade700.withOpacity(0.75)
-        : kPrimaryColor.withOpacity(0.6),
-  );
-}
+MaterialColor primaryColor = MaterialColor(0xFF3E5641, color);
 
-void showModalLoading(context) {
-  showGeneralDialog(
-    context: context,
-    barrierColor: Colors.black.withOpacity(0.4), // Background color
-    barrierDismissible: false,
-    transitionDuration: const Duration(milliseconds: 400),
-    pageBuilder: (_, __, ___) {
-      return WillPopScope(
-        onWillPop: () async {
-          return false;
-        },
-        child: const Center(child: CircularProgressIndicator()),
-      );
-    },
-  );
-}
-
-void hideModalLoading(context) {
-  Navigator.pop(context);
-}
-
-BoxDecoration kDefaultBoxDecoration = BoxDecoration(
-    color: Colors.white,
-    borderRadius: BorderRadius.circular(15),
-    boxShadow: [
-      BoxShadow(
-          color: kGreyColor.withOpacity(0.6),
-          offset: const Offset(0, 2),
-          blurRadius: 5)
-    ]);
+Map<int, Color> color = {
+  50: const Color.fromRGBO(62, 86, 65, .1),
+  100: const Color.fromRGBO(62, 86, 65, .2),
+  200: const Color.fromRGBO(62, 86, 65, .3),
+  300: const Color.fromRGBO(62, 86, 65, .4),
+  400: const Color.fromRGBO(62, 86, 65, .5),
+  500: const Color.fromRGBO(62, 86, 65, .6),
+  600: const Color.fromRGBO(62, 86, 65, .7),
+  700: const Color.fromRGBO(62, 86, 65, .8),
+  800: const Color.fromRGBO(62, 86, 65, .9),
+  900: const Color.fromRGBO(62, 86, 65, 1),
+};

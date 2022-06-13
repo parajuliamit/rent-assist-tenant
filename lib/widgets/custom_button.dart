@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tenant_app/constants.dart';
+import 'package:tenant_app/app/utils/constants.dart';
 
 class CustomButton extends StatelessWidget {
   final VoidCallback onpress;
@@ -7,7 +7,8 @@ class CustomButton extends StatelessWidget {
   final Color fillColor;
   final Color textColor;
 
-  const CustomButton(this.text, this.onpress, this.fillColor, this.textColor);
+  const CustomButton(this.text, this.onpress,
+      {this.fillColor = kPrimaryColor, this.textColor = Colors.white});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,7 @@ class CustomButton extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
-          side: const BorderSide(color: blueColor)),
+          side: const BorderSide(color: kPrimaryColor)),
       onPressed: onpress,
       child: SizedBox(
         width: MediaQuery.of(context).size.width * 0.75,
