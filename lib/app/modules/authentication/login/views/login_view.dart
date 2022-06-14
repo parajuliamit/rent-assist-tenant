@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 
 import 'package:get/get.dart';
 import 'package:tenant_app/app/modules/authentication/register/views/register_view.dart';
+import 'package:tenant_app/app/routes/app_pages.dart';
 import 'package:tenant_app/app/utils/app_utils.dart';
 import 'package:tenant_app/app/utils/constants.dart';
 import 'package:tenant_app/widgets/custom_button.dart';
@@ -140,7 +141,7 @@ class LoginView extends GetView<LoginController> {
                       CustomButton(
                         'Register',
                         () {
-                          controller.login();
+                          Get.toNamed(Routes.REGISTER);
                         },
                       )
                     ],
