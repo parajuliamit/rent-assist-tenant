@@ -63,7 +63,7 @@ class RegisterController extends GetxController {
     String email = emailController.text.trim();
     String password = passwordController.text.trim();
     String confirmPassword = confirmPasswordController.text.trim();
-    if (validateInput(fname, email, password, confirmPassword)) {
+    if (validateInput(fname, lname, email, password, confirmPassword)) {
       await Future.delayed(2.seconds);
       showSnackbar('Register Successful');
       Get.toNamed(Routes.HOME);
@@ -72,30 +72,30 @@ class RegisterController extends GetxController {
     isLoading(false);
   }
 
-  bool validateInput(
-      String name, String email, String password, String confirmPassowrd) {
+  bool validateInput(String fname, String lname, String email, String password,
+      String confirmPassowrd) {
     bool isValid = true;
     if (!email.isEmail) {
-      emailError("Enter valid email");
+      emailError("Enter a valid email");
       isValid = false;
     }
 
     if (password.length < 8) {
-      passwordError("Passowrd must be at least 8 characters");
+      passwordError("Passowrd must be at least 8 characters long");
       isValid = false;
     }
 
     if (password != confirmPassowrd) {
-      confirmPasswordError("password doesnot match");
+      confirmPasswordError("Password does not match");
       isValid = false;
     }
 
-    if (name.length < 4) {
-      fnameError("Enter a valid name");
+    if (fname.isEmpty) {
+      fnameError("Please enter first name");
       isValid = false;
     }
-    if (name.isEmpty || email.isEmpty || password.isEmpty) {
-      Get.rawSnackbar(message: 'All fields are required');
+    if (lname.isEmpty) {
+      lnameError("Please enter last name");
       isValid = false;
     }
     return isValid;

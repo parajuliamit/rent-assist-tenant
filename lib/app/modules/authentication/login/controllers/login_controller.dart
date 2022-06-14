@@ -3,8 +3,11 @@ import 'package:get/get.dart';
 import 'package:tenant_app/app/utils/app_utils.dart';
 
 import '../../../../routes/app_pages.dart';
+import '../views/widgets/login_bottom_sheet.dart';
 
 class LoginController extends GetxController {
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+
   final isLoading = false.obs;
   late final TextEditingController emailController;
   late final TextEditingController passwordController;
@@ -23,6 +26,12 @@ class LoginController extends GetxController {
     passwordController.addListener(() {
       passwordError.value = "";
     });
+  }
+
+  @override
+  void onReady() {
+    super.onReady();
+    showLoginBottom();
   }
 
   Future<void> login() async {
@@ -50,6 +59,15 @@ class LoginController extends GetxController {
       isValid = false;
     }
     return isValid;
+  }
+
+  void showLoginBottom() {
+    scaffoldKey.currentState?.showBottomSheet(
+        (context) => const LoginBottomSheet(),
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20), topRight: Radius.circular(20))),
+        enableDrag: false);
   }
 
   @override

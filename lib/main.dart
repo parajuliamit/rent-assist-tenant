@@ -38,6 +38,7 @@ class MyApp extends StatelessWidget {
       title: "Rent Assist - Tenant",
       theme: ThemeData(
           primarySwatch: primaryColor,
+          scaffoldBackgroundColor: kWhiteColor,
           primaryColor: kPrimaryColor,
           floatingActionButtonTheme: const FloatingActionButtonThemeData(
             backgroundColor: kPrimaryColor,
