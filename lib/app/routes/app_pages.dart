@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 
 import 'package:tenant_app/app/modules/navigation/bindings/navigation_binding.dart';
 import 'package:tenant_app/app/modules/navigation/views/navigation_view.dart';
+import 'package:tenant_app/app/modules/pay/views/pay_view.dart';
 
 import '../modules/authentication/login/bindings/login_binding.dart';
 import '../modules/authentication/login/views/login_view.dart';

@@ -21,7 +21,7 @@ class NavigationView extends GetView<NavigationController> {
                   BottomBarIcon(
                       icon: Icons.home, controller: controller, index: 0),
                   BottomBarIcon(
-                      icon: Icons.home, controller: controller, index: 1),
+                      icon: Icons.message, controller: controller, index: 1),
                   MaterialButton(
                     elevation: 0,
                     minWidth: 10,
@@ -41,9 +41,11 @@ class NavigationView extends GetView<NavigationController> {
                         borderRadius: BorderRadius.circular(20)),
                   ),
                   BottomBarIcon(
-                      icon: Icons.home, controller: controller, index: 3),
+                      icon: Icons.notifications,
+                      controller: controller,
+                      index: 3),
                   BottomBarIcon(
-                      icon: Icons.home, controller: controller, index: 4),
+                      icon: Icons.person, controller: controller, index: 4),
                 ],
               ),
             )),

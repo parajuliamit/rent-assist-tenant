@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../widgets/loading.dart';
+import '../widgets/loading.dart';
 
 void showSnackbar(String message,
     {bool isError = false, bool isBottom = false, Duration? time}) async {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../../../widgets/widgets.dart';
+import '../../../../../widgets/widgets.dart';
 import '../../../../../utils/constants.dart';
 import '../../../login/views/login_view.dart';
 import '../../controllers/register_controller.dart';

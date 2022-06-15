@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tenant_app/app/utils/constants.dart';
 
+import 'widgets/homepage_button.dart';
+import 'widgets/landlord_container.dart';
+import 'widgets/user_info.dart';
+
 class HomeView extends GetView {
   @override
   Widget build(BuildContext context) {
@@ -12,8 +16,7 @@ class HomeView extends GetView {
           child: Column(
             children: [
               Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                padding: const EdgeInsets.fromLTRB(25, 15, 25, 0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -21,58 +24,163 @@ class HomeView extends GetView {
                       'Home',
                       style: TextStyle(color: kWhiteColor, fontSize: 24),
                     ),
-                    ElevatedButton(
-                      onPressed: () {},
-                      child: Text('Set remainder'),
+                    HomePageButton(
+                      onpress: () {},
+                      text: 'Set remainder',
+                      textColor: Colors.white,
+                      fillColor: kDarkGreen,
                     ),
                   ],
                 ),
               ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                child: Row(
-                  children: const [
-                    Icon(Icons.person),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text('Hello hello'),
-                  ],
-                ),
+              const Expanded(child: UserInfo()),
+              const SizedBox(
+                height: 5,
               ),
-              Expanded(
-                child: Container(
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: Colors.green,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(25),
-                      topRight: Radius.circular(25),
-                    ),
+              Container(
+                width: double.infinity,
+                decoration: const BoxDecoration(
+                  color: kDarkGreen,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(25),
+                    topRight: Radius.circular(25),
                   ),
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 100,
-                      ),
-                      Expanded(
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: kWhiteColor,
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(25),
-                              topRight: Radius.circular(25),
-                            ),
-                          ),
+                ),
+                child: Column(
+                  children: [
+                    const LandlordContainer(),
+                    Container(
+                      width: double.infinity,
+                      decoration: const BoxDecoration(
+                        color: kWhiteColor,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(25),
+                          topRight: Radius.circular(25),
                         ),
-                      )
-                    ],
-                  ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 15,
+                        ),
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 15),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const Padding(
+                                    padding: EdgeInsets.only(left: 5),
+                                    child: Text(
+                                      'Payment',
+                                      style: TextStyle(
+                                          color: kDarkGreen,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 15),
+                                    ),
+                                  ),
+                                  TextButton(
+                                    child: const Text('History'),
+                                    onPressed: () {},
+                                  )
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              height: 205,
+                              child: ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                itemCount: 5,
+                                itemBuilder: (context, index) => Container(
+                                  width: 220,
+                                  height: 185,
+                                  margin: EdgeInsets.fromLTRB(
+                                      index == 0 ? 15 : 10,
+                                      10,
+                                      index == 4 ? 15 : 10,
+                                      10),
+                                  padding: const EdgeInsets.all(15),
+                                  decoration: BoxDecoration(
+                                      color: Colors.grey.withOpacity(0.15),
+                                      borderRadius: BorderRadius.circular(15)),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      const Text(
+                                        'June',
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 18),
+                                      ),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                      const PaymentRow('Basic Rent', '10000'),
+                                      const PaymentRow(
+                                          'Paid upto', '5 June 2022'),
+                                      const PaymentRow('Old rent due', '1000'),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                      HomePageButton(
+                                          text: 'Pay',
+                                          textColor: Colors.white,
+                                          fillColor: kPrimaryColor,
+                                          onpress: () {})
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    )
+                  ],
                 ),
               )
             ],
           ),
         ));
+  }
+}
+
+class PaymentRow extends StatelessWidget {
+  const PaymentRow(
+    this.title,
+    this.data, {
+    Key? key,
+  }) : super(key: key);
+
+  final String title;
+  final String data;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 3),
+      child: Row(
+        children: [
+          Expanded(
+              child: Text(
+            title,
+            maxLines: 1,
+            style: const TextStyle(color: Colors.grey, fontSize: 15),
+          )),
+          Expanded(
+              child: Text(
+            data,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 15),
+          ))
+        ],
+      ),
+    );
   }
 }
