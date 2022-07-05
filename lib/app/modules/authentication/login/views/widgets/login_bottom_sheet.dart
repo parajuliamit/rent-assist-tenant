@@ -42,7 +42,7 @@ class LoginBottomSheet extends StatelessWidget {
             Obx(
               () => InputField(
                 'Email',
-                const Icon(
+                icon: const Icon(
                   Icons.email_outlined,
                 ),
                 controller: controller.emailController,

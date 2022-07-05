@@ -7,21 +7,35 @@ class UserInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+    return Container(
+      margin: const EdgeInsets.all(20),
       child: Row(
-        children: const [
-          CircleAvatar(
-            child: Icon(Icons.person),
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            children: const [
+              CircleAvatar(
+                radius: 25,
+                child: Icon(
+                  Icons.person,
+                  size: 30,
+                ),
+              ),
+              SizedBox(
+                width: 15,
+              ),
+              Text(
+                'Hello Amit',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+              ),
+            ],
           ),
-          SizedBox(
-            width: 10,
-          ),
-          Text(
-            'Hello Amit',
-            style: TextStyle(
-                color: kWhiteColor, fontSize: 18, fontWeight: FontWeight.w600),
-          ),
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.notifications_on_outlined),
+            color: kDarkGreen,
+            iconSize: 25,
+          )
         ],
       ),
     );

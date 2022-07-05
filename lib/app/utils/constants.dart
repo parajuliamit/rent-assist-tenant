@@ -4,6 +4,8 @@ const baseUrl = "https://";
 
 const kPrimaryColor = Color(0xFF83BCA9);
 const kDarkGreen = Color(0xFF3E5641);
+const kLightGreen = Color.fromARGB(184, 71, 120, 78);
+
 // const kLightGreen = Color(0xFF83BCA9);
 const kOrangeColor = Color(0xFFD36135);
 const kChestnutColor = Color(0xFFA24936);

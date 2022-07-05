@@ -1,8 +1,11 @@
 import 'package:get/get.dart';
 
+import 'package:tenant_app/app/modules/complaint/add_complaint/bindings/add_complaint_binding.dart';
+import 'package:tenant_app/app/modules/complaint/add_complaint/views/add_complaint_view.dart';
+import 'package:tenant_app/app/modules/complaint/bindings/complaint_binding.dart';
+import 'package:tenant_app/app/modules/complaint/views/complaint_view.dart';
 import 'package:tenant_app/app/modules/navigation/bindings/navigation_binding.dart';
 import 'package:tenant_app/app/modules/navigation/views/navigation_view.dart';
-import 'package:tenant_app/app/modules/pay/views/pay_view.dart';
 
 import '../modules/authentication/login/bindings/login_binding.dart';
 import '../modules/authentication/login/views/login_view.dart';
@@ -50,6 +53,16 @@ class AppPages {
       name: _Paths.NAVIGATION,
       page: () => NavigationView(),
       binding: NavigationBinding(),
+    ),
+    GetPage(
+      name: _Paths.COMPLAINT,
+      page: () => ComplaintView(),
+      binding: ComplaintBinding(),
+    ),
+    GetPage(
+      name: _Paths.ADD_COMPLAINT,
+      page: () => AddComplaintView(),
+      binding: AddComplaintBinding(),
     ),
   ];
 }

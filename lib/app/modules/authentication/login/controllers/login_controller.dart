@@ -42,7 +42,7 @@ class LoginController extends GetxController {
       await Future.delayed(2.seconds);
       //Login logic here
       showSnackbar('Login Successful');
-      Get.toNamed(Routes.HOME);
+      Get.offNamed(Routes.HOME);
     }
 
     isLoading(false);

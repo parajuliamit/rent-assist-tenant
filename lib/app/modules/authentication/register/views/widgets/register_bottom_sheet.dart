@@ -33,7 +33,7 @@ class RegisterBottomSheet extends StatelessWidget {
             Obx(
               () => InputField(
                 'First name',
-                const Icon(
+                icon: const Icon(
                   Icons.person_outline_outlined,
                 ),
                 controller: controller.fnameController,
@@ -45,7 +45,7 @@ class RegisterBottomSheet extends StatelessWidget {
             Obx(
               () => InputField(
                 'Last name',
-                const Icon(
+                icon: const Icon(
                   Icons.person_outline_outlined,
                 ),
                 controller: controller.lnameController,
@@ -57,7 +57,7 @@ class RegisterBottomSheet extends StatelessWidget {
             Obx(
               () => InputField(
                 'Email',
-                const Icon(
+                icon: const Icon(
                   Icons.email_outlined,
                 ),
                 controller: controller.emailController,

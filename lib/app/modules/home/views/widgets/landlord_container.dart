@@ -11,75 +11,89 @@ class LandlordContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(20, 30, 20, 40),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Padding(
-            padding: EdgeInsets.only(left: 5, bottom: 15),
-            child: Text(
-              'Landlord Information',
-              style: TextStyle(
-                color: kWhiteColor,
-                fontSize: 16,
-              ),
-            ),
-          ),
-          Row(
-            children: [
-              const CircleAvatar(
-                backgroundColor: kWhiteColor,
-                radius: 30,
-                child: Icon(Icons.person),
-              ),
-              const SizedBox(
-                width: 10,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  Text(
-                    'Sunil Thapa',
-                    style: TextStyle(
-                        color: kWhiteColor,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600),
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Text(
-                    'Leknath, Pokhara',
-                    style: TextStyle(color: kWhiteColor, fontSize: 14),
-                  )
-                ],
-              ),
-            ],
+          const Text(
+            'Landlord Information',
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
           ),
           const SizedBox(
             height: 10,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Expanded(
-                child: HomePageButton(
-                    text: 'Call',
-                    textColor: kDarkGreen,
-                    fillColor: kWhiteColor,
-                    onpress: () {}),
-              ),
-              const SizedBox(
-                width: 15,
-              ),
-              Expanded(
-                child: HomePageButton(
-                    text: 'Message',
-                    textColor: kWhiteColor,
-                    fillColor: kDarkGreen,
-                    onpress: () {}),
-              )
-            ],
+          Container(
+            padding: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+                color: kWhiteColor,
+                borderRadius: BorderRadius.circular(12),
+                boxShadow: [
+                  BoxShadow(
+                      color: kPrimaryColor.withOpacity(0.25),
+                      spreadRadius: 5,
+                      offset: const Offset(0, 3),
+                      blurRadius: 10)
+                ]),
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    const CircleAvatar(
+                      backgroundColor: kGreyColor,
+                      radius: 25,
+                      child: Icon(Icons.person),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: const [
+                        Text(
+                          'Sunil Thapa',
+                          style: TextStyle(
+                              // color: kWhiteColor,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w600),
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          'Leknath, Pokhara',
+                          style: TextStyle(fontSize: 14),
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Expanded(
+                      child: HomePageButton(
+                          text: 'Call',
+                          textColor: kWhiteColor,
+                          fillColor: kPrimaryColor,
+                          onpress: () {}),
+                    ),
+                    const SizedBox(
+                      width: 15,
+                    ),
+                    Expanded(
+                      child: HomePageButton(
+                          text: 'Message',
+                          textColor: kWhiteColor,
+                          fillColor: kPrimaryColor,
+                          onpress: () {}),
+                    )
+                  ],
+                ),
+              ],
+            ),
           ),
         ],
       ),

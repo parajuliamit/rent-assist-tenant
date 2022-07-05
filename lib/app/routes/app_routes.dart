@@ -8,6 +8,8 @@ abstract class Routes {
   static const LOGIN = _Paths.LOGIN;
   static const REGISTER = _Paths.REGISTER;
   static const NAVIGATION = _Paths.NAVIGATION;
+  static const COMPLAINT = _Paths.COMPLAINT;
+  static const ADD_COMPLAINT = _Paths.ADD_COMPLAINT;
 }
 
 abstract class _Paths {
@@ -17,4 +19,6 @@ abstract class _Paths {
   static const LOGIN = '/login';
   static const REGISTER = '/register';
   static const NAVIGATION = '/navigation';
+  static const COMPLAINT = '/complaint';
+  static const ADD_COMPLAINT = '/add-complaint';
 }
