@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:tenant_app/app/modules/chat/views/widgets/chat_bubble.dart';
 
-class ChatView extends GetView {
+import '../controllers/chat_controller.dart';
+import 'widgets/chat_bubble.dart';
+
+class ChatView extends GetView<ChatController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

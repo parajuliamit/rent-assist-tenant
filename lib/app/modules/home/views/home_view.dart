@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:tenant_app/app/modules/home/views/widgets/contract_container.dart';
 
+import '../controllers/home_controller.dart';
 import 'widgets/complain_row.dart';
+import 'widgets/contract_container.dart';
 import 'widgets/landlord_container.dart';
 import 'widgets/payment_container.dart';
 import 'widgets/user_info.dart';
 
-class HomeView extends GetView {
+class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
