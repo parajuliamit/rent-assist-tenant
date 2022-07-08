@@ -11,7 +11,7 @@ class PayView extends GetView<PayController> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: kPrimaryColor,
-        appBar: AppBar(),
+        // appBar: AppBar(),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           // crossAxisAlignment: CrossAxisAlignment.start,
@@ -53,6 +53,9 @@ class PayView extends GetView<PayController> {
               child: Column(
                 children: [
                   const InputField('Pay Amount', icon: Icon(Icons.money)),
+                  SizedBox(
+                    height: 20,
+                  ),
                   CustomButton(
                     'Pay Now',
                     () {},

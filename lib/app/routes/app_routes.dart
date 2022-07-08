@@ -10,6 +10,9 @@ abstract class Routes {
   static const NAVIGATION = _Paths.NAVIGATION;
   static const COMPLAINT = _Paths.COMPLAINT;
   static const ADD_COMPLAINT = _Paths.ADD_COMPLAINT;
+  static const SAVED_PAYMENT = _Paths.SAVED_PAYMENT;
+  static const EDIT_PROFILE = _Paths.EDIT_PROFILE;
+  static const CHANGE_PASSWORD = _Paths.CHANGE_PASSWORD;
 }
 
 abstract class _Paths {
@@ -21,4 +24,7 @@ abstract class _Paths {
   static const NAVIGATION = '/navigation';
   static const COMPLAINT = '/complaint';
   static const ADD_COMPLAINT = '/add-complaint';
+  static const SAVED_PAYMENT = '/saved-payment';
+  static const EDIT_PROFILE = '/edit-profile';
+  static const CHANGE_PASSWORD = '/change-password';
 }

@@ -1,5 +1,11 @@
 import 'package:get/get.dart';
 
+import 'package:tenant_app/app/modules/account/change_password/bindings/change_password_binding.dart';
+import 'package:tenant_app/app/modules/account/change_password/views/change_password_view.dart';
+import 'package:tenant_app/app/modules/account/edit_profile/bindings/edit_profile_binding.dart';
+import 'package:tenant_app/app/modules/account/edit_profile/views/edit_profile_view.dart';
+import 'package:tenant_app/app/modules/account/saved_payment/bindings/saved_payment_binding.dart';
+import 'package:tenant_app/app/modules/account/saved_payment/views/saved_payment_view.dart';
 import 'package:tenant_app/app/modules/complaint/add_complaint/bindings/add_complaint_binding.dart';
 import 'package:tenant_app/app/modules/complaint/add_complaint/views/add_complaint_view.dart';
 import 'package:tenant_app/app/modules/complaint/bindings/complaint_binding.dart';
@@ -63,6 +69,21 @@ class AppPages {
       name: _Paths.ADD_COMPLAINT,
       page: () => AddComplaintView(),
       binding: AddComplaintBinding(),
+    ),
+    GetPage(
+      name: _Paths.SAVED_PAYMENT,
+      page: () => SavedPaymentView(),
+      binding: SavedPaymentBinding(),
+    ),
+    GetPage(
+      name: _Paths.EDIT_PROFILE,
+      page: () => EditProfileView(),
+      binding: EditProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.CHANGE_PASSWORD,
+      page: () => ChangePasswordView(),
+      binding: ChangePasswordBinding(),
     ),
   ];
 }
