@@ -55,6 +55,7 @@ class ChangePasswordView extends GetView<ChangePasswordController> {
                 ),
                 CustomButton('Update password', () {
                   controller.changePassword();
+                  // controller.clearText();
                 })
               ],
             ),

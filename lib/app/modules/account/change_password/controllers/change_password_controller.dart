@@ -48,6 +48,7 @@ class ChangePasswordController extends GetxController {
       await Future.delayed(2.seconds);
       showSnackbar('Password Reset Successful');
       Get.toNamed(Routes.HOME);
+      clearText();
     }
 
     isLoading(false);
@@ -68,6 +69,12 @@ class ChangePasswordController extends GetxController {
     }
 
     return isValid;
+  }
+
+  void clearText() {
+    passwordController.clear();
+    newpasswordController.clear();
+    confirmPasswordController.clear();
   }
 
   @override
