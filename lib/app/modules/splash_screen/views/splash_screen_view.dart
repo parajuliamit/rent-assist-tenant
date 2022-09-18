@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:tenant_app/app/routes/app_pages.dart';
+import 'package:tenant_app/app/utils/constants.dart';
 
 import '../controllers/splash_screen_controller.dart';
 
@@ -9,16 +9,22 @@ class SplashScreenView extends GetView<SplashScreenController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('SplashScreenView'),
-        centerTitle: true,
-      ),
+      backgroundColor: kPrimaryColor,
       body: Center(
-          child: ElevatedButton(
-              onPressed: () {
-                Get.offNamed(Routes.LOGIN);
-              },
-              child: Text('Go To Login'))),
+          child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: const [
+          Icon(
+            Icons.roofing_outlined,
+            size: 35,
+            color: kWhiteColor,
+          ),
+          Text(
+            'RENT ASSIST',
+            style: TextStyle(fontSize: 25, color: kWhiteColor),
+          ),
+        ],
+      )),
     );
   }
 }

@@ -26,15 +26,16 @@ class AuthRepository {
     appController.login(profile!);
   }
 
+  bool checkLogin() {
+    String? token = _storage.read("token");
+    if (token == null || token == '') {
+      return false;
+    }
+    return true;
+  }
+
   // void logout() {
   //   LoginResponseCache(_sharedPreferences).delete();
-  // }
-
-  // bool isLoggedIn() {
-  //   if (_sharedPreferences.getString('loginResponseLocal') == null) {
-  //     return false;
-  //   }
-  //   return _sharedPreferences.getString('loginResponseLocal')!.isNotEmpty;
   // }
 
   // Future<LoginResponse?> getCacheResponse() async {
