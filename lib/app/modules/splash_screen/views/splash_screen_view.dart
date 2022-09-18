@@ -11,20 +11,22 @@ class SplashScreenView extends GetView<SplashScreenController> {
     return Scaffold(
       backgroundColor: kPrimaryColor,
       body: Center(
-          child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: const [
-          Icon(
-            Icons.roofing_outlined,
-            size: 35,
-            color: kWhiteColor,
-          ),
-          Text(
-            'RENT ASSIST',
-            style: TextStyle(fontSize: 25, color: kWhiteColor),
-          ),
-        ],
-      )),
+          child: Obx(() => controller.isError.isTrue
+              ? Icon(Icons.error)
+              : Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Icon(
+                      Icons.roofing_outlined,
+                      size: 45,
+                      color: kWhiteColor,
+                    ),
+                    Text(
+                      'RENT ASSIST',
+                      style: TextStyle(fontSize: 35, color: kWhiteColor),
+                    ),
+                  ],
+                ))),
     );
   }
 }
