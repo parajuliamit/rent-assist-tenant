@@ -61,10 +61,10 @@ class EditProfileBottomSheet extends StatelessWidget {
                 icon: const Icon(
                   Icons.email_outlined,
                 ),
-                controller: controller.emailController,
-                inputType: TextInputType.emailAddress,
+                controller: controller.phoneController,
+                inputType: TextInputType.phone,
                 textInputAction: TextInputAction.next,
-                errorMessage: controller.emailError.value,
+                errorMessage: controller.phoneError.value,
               ),
             ),
             const SizedBox(

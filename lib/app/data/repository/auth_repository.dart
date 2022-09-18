@@ -1,0 +1,60 @@
+import 'package:dio/dio.dart';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+
+import '../../app_controller.dart';
+import '../../app_repository.dart';
+import '../api/auth/auth_api.dart';
+import '../models/auth/login_request.dart';
+import '../models/user/profile.dart';
+
+class AuthRepository {
+  final GetStorage _storage;
+  final Dio _dio;
+
+  AuthRepository(this._storage, this._dio);
+
+  Future<void> login(LoginRequest loginRequest) async {
+    var response = await AuthApi(_dio).login(loginRequest);
+    _storage.write('token', response.key);
+    final appController = Get.find<AppController>();
+    var profile =
+        await Get.find<AppRepository>().getUserRepository().getUerProfile();
+    if (profile?.isOwner != false) {
+      throw Exception('You are not a tenant');
+    }
+    appController.login(profile!);
+  }
+
+  // void logout() {
+  //   LoginResponseCache(_sharedPreferences).delete();
+  // }
+
+  // bool isLoggedIn() {
+  //   if (_sharedPreferences.getString('loginResponseLocal') == null) {
+  //     return false;
+  //   }
+  //   return _sharedPreferences.getString('loginResponseLocal')!.isNotEmpty;
+  // }
+
+  // Future<LoginResponse?> getCacheResponse() async {
+  //   return await LoginResponseCache(this._sharedPreferences).get();
+  // }
+
+  // Future<LoginResponse> registerUser(RegisterRequest registerRequest) async {
+  //   LoginResponse loginResponse;
+
+  //   loginResponse = await AuthApi(_dio).register(registerRequest);
+
+  //   LoginResponseCache(_sharedPreferences).set(loginResponse);
+  //   return loginResponse;
+  // }
+
+  // Future<void> verifyOtp(VerifyOtp verifyOtp) async {
+  //   await AuthApi(_dio).verify(verifyOtp);
+  // }
+
+  // Future<void> resendOtp(String userId) async {
+  //   await AuthApi(_dio).resendOtp(userId);
+  // }
+}
