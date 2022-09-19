@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:tenant_app/app/routes/app_pages.dart';
 
 import '../../../../utils/constants.dart';
 import 'homepage_button.dart';
@@ -78,7 +80,9 @@ class LandlordContainer extends StatelessWidget {
                           text: 'Call',
                           textColor: kWhiteColor,
                           fillColor: kPrimaryColor,
-                          onpress: () {}),
+                          onpress: () {
+                            Get.toNamed(Routes.SCAN_OWNER);
+                          }),
                     ),
                     const SizedBox(
                       width: 15,

@@ -13,6 +13,7 @@ abstract class Routes {
   static const SAVED_PAYMENT = _Paths.SAVED_PAYMENT;
   static const EDIT_PROFILE = _Paths.EDIT_PROFILE;
   static const CHANGE_PASSWORD = _Paths.CHANGE_PASSWORD;
+  static const SCAN_OWNER = _Paths.SCAN_OWNER;
 }
 
 abstract class _Paths {
@@ -27,4 +28,5 @@ abstract class _Paths {
   static const SAVED_PAYMENT = '/saved-payment';
   static const EDIT_PROFILE = '/edit-profile';
   static const CHANGE_PASSWORD = '/change-password';
+  static const SCAN_OWNER = '/scan-owner';
 }
