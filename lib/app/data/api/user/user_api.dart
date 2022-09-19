@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
+import '../../models/complaints/complaints._response.dart';
 import '../../models/user/profile.dart';
 
 part 'user_api.g.dart';
@@ -11,4 +12,7 @@ abstract class UserApi {
 
   @GET("/api/users/my-details/")
   Future<ProfileResponse> getProfile();
+
+  @GET("/api/complaints/")
+  Future<ComplaintsResponse> getComplaints();
 }
