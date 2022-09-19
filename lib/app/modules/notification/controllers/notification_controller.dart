@@ -1,12 +1,43 @@
+import 'package:dio/dio.dart';
 import 'package:get/get.dart';
+import 'package:tenant_app/app/app_repository.dart';
+
+import '../../../data/exception/server_exception.dart';
+import '../../../data/models/notifications/notification_response.dart';
 
 class NotificationController extends GetxController {
-  //TODO: Implement NotificationController
+  final appRepo = Get.find<AppRepository>();
+  final isError = false.obs;
+  final isLoading = false.obs;
 
-  final count = 0.obs;
+  String errorMessage = '';
+
+  List<Notification> notifications = [];
+
   @override
   void onInit() {
     super.onInit();
+    loadNotifications();
+  }
+
+  void loadNotifications() async {
+    isError(false);
+    isLoading(true);
+
+    try {
+      notifications =
+          await appRepo.getNotificationRepository().getNotifications();
+    } catch (e) {
+      print(e);
+      isError(true);
+      if (e is DioError) {
+        errorMessage = ServerError.withError(error: e).getErrorMessage();
+      } else {
+        errorMessage = e.toString();
+      }
+    }
+
+    isLoading(false);
   }
 
   @override
@@ -16,5 +47,4 @@ class NotificationController extends GetxController {
 
   @override
   void onClose() {}
-  void increment() => count.value++;
 }

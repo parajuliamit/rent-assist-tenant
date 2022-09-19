@@ -6,6 +6,7 @@ import 'package:tenant_app/app/data/repository/complaint_repository.dart';
 
 import 'data/interceptor/authentication_interceptor.dart';
 import 'data/repository/auth_repository.dart';
+import 'data/repository/notification_repository.dart';
 import 'data/repository/user_repository.dart';
 import 'utils/constants.dart';
 
@@ -43,5 +44,9 @@ class AppRepository extends GetxService {
 
   ComplaintRepository getComplaintsRepository() {
     return ComplaintRepository(_dioClient);
+  }
+
+  NotificationRepository getNotificationRepository() {
+    return NotificationRepository(_dioClient);
   }
 }

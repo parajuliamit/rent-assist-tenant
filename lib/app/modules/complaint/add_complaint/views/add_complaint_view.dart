@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:tenant_app/app/modules/complaint/add_complaint/views/widgets/complain_input.dart';
-import 'package:tenant_app/app/widgets/input_field.dart';
 import 'package:tenant_app/app/widgets/widgets.dart';
 
 import '../../../../utils/constants.dart';
