@@ -39,16 +39,12 @@ class SplashScreenController extends GetxController {
         Get.offAllNamed(Routes.LOGIN);
       }
     } catch (e) {
-      if (e is DioError) {
-        errorMessage = ServerError.withError(error: e).getErrorMessage();
-        if (errorMessage.contains('Invalid token')) {
-          Get.offAllNamed(Routes.LOGIN);
-          return;
-        }
+      if (e.toString().contains('SocketException')) {
         isError(true);
+        errorMessage = "Check your internet connection";
       } else {
-        isError(true);
-        errorMessage = e.toString();
+        Get.offAllNamed(Routes.LOGIN);
+        return;
       }
     }
   }
