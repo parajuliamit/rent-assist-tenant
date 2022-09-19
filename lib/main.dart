@@ -5,16 +5,24 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:khalti_flutter/khalti_flutter.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 import 'app/app_controller.dart';
 import 'app/app_repository.dart';
 import 'app/routes/app_pages.dart';
 import 'app/utils/constants.dart';
 
+Future<void> _messageHandler(RemoteMessage message) async {
+  print('message received');
+}
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
   var storage = GetStorage();
+  await Firebase.initializeApp();
+  FirebaseMessaging.onBackgroundMessage(_messageHandler);
   runApp(
     MyApp(storage: storage),
   );

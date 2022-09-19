@@ -60,6 +60,19 @@ class LoginController extends GetxController {
     isLoading(false);
   }
 
+  // void registerDeviceId() async {
+  //   try {
+  //     var messaging = FirebaseMessaging.instance;
+  //     var deviceToken = await messaging.getToken();
+  //     if (deviceToken == null) return;
+  //     await authRepo.registerDeviceId(RegisterDeviceRequest(
+  //         registrationId: deviceToken,
+  //         type: Platform.isIOS ? 'ios' : 'android'));
+  //   } catch (e) {
+  //     print(e);
+  //   }
+  // }
+
   bool validateInput(String email, String password) {
     bool isValid = true;
     // if (!email.isEmail) {
