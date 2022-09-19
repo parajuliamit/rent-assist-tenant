@@ -6,6 +6,7 @@ import '../../app_controller.dart';
 import '../../app_repository.dart';
 import '../api/auth/auth_api.dart';
 import '../models/auth/login_request.dart';
+import '../models/auth/register_request.dart';
 import '../models/user/profile.dart';
 
 class AuthRepository {
@@ -20,9 +21,9 @@ class AuthRepository {
     final appController = Get.find<AppController>();
     var profile =
         await Get.find<AppRepository>().getUserRepository().getUerProfile();
-    if (profile?.isOwner != false) {
-      throw Exception('You are not a tenant');
-    }
+    // if (profile?.isOwner != false) {
+    //   throw Exception('You are not a tenant');
+    // }
     appController.login(profile!);
   }
 
@@ -42,14 +43,14 @@ class AuthRepository {
   //   return await LoginResponseCache(this._sharedPreferences).get();
   // }
 
-  // Future<LoginResponse> registerUser(RegisterRequest registerRequest) async {
-  //   LoginResponse loginResponse;
+  Future<void> registerUser(RegisterRequest registerRequest) async {
+    // LoginResponse loginResponse;
 
-  //   loginResponse = await AuthApi(_dio).register(registerRequest);
+    await AuthApi(_dio).register(registerRequest);
 
-  //   LoginResponseCache(_sharedPreferences).set(loginResponse);
-  //   return loginResponse;
-  // }
+    // LoginResponseCache(_sharedPreferences).set(loginResponse);
+    // return loginResponse;
+  }
 
   // Future<void> verifyOtp(VerifyOtp verifyOtp) async {
   //   await AuthApi(_dio).verify(verifyOtp);

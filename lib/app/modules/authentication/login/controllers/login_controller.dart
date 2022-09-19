@@ -75,7 +75,6 @@ class LoginController extends GetxController {
 
   void handleError(DioError e) {
     var error = ServerError.withError(error: e).getError();
-    print(error);
     if (error != null) {
       if (error.containsKey('non_field_errors')) {
         showSnackbar(error['non_field_errors']![0], isError: true);

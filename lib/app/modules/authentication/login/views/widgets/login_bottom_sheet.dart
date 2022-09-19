@@ -32,8 +32,8 @@ class LoginBottomSheet extends StatelessWidget {
             const Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                'Welcome',
-                style: TextStyle(fontSize: 25, fontWeight: FontWeight.normal),
+                'Tenant Login',
+                style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
               ),
             ),
             const SizedBox(
@@ -79,7 +79,7 @@ class LoginBottomSheet extends StatelessWidget {
               ),
             ),
             const SizedBox(
-              height: 30,
+              height: 20,
             ),
             CustomButton(
               'Login',
@@ -91,7 +91,7 @@ class LoginBottomSheet extends StatelessWidget {
               textColor: kPrimaryColor,
             ),
             const SizedBox(
-              height: 30,
+              height: 20,
             ),
             CustomButton(
               'Register',

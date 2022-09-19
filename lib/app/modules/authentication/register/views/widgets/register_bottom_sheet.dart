@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 
 import '../../../../../widgets/widgets.dart';
 import '../../../../../utils/constants.dart';
-import '../../../login/views/login_view.dart';
 import '../../controllers/register_controller.dart';
 
 class RegisterBottomSheet extends StatelessWidget {
@@ -15,6 +14,7 @@ class RegisterBottomSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.find<RegisterController>();
     return Container(
+      color: Colors.white,
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
       child: SingleChildScrollView(
         child: Column(
@@ -67,8 +67,20 @@ class RegisterBottomSheet extends StatelessWidget {
               ),
             ),
             Obx(
+              () => InputField(
+                'Phone Number',
+                icon: const Icon(
+                  Icons.phone,
+                ),
+                controller: controller.phoneController,
+                inputType: TextInputType.phone,
+                textInputAction: TextInputAction.next,
+                errorMessage: controller.phoneError.value,
+              ),
+            ),
+            Obx(
               () => PasswordField(
-                'password',
+                'Password',
                 controller: controller.passwordController,
                 errorMessage: controller.passwordError.value,
               ),
@@ -78,13 +90,13 @@ class RegisterBottomSheet extends StatelessWidget {
             ),
             Obx(
               () => PasswordField(
-                'confirm password',
+                'Confirm Password',
                 controller: controller.confirmPasswordController,
                 errorMessage: controller.confirmPasswordError.value,
               ),
             ),
             const SizedBox(
-              height: 50,
+              height: 30,
             ),
             Obx(() => controller.isLoading.isTrue
                 ? const Loading(
@@ -99,7 +111,9 @@ class RegisterBottomSheet extends StatelessWidget {
                     fillColor: kWhiteColor,
                     textColor: kPrimaryColor,
                   ))),
-            const SizedBox(height: 10),
+            const SizedBox(
+              height: 5,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -107,10 +121,9 @@ class RegisterBottomSheet extends StatelessWidget {
                 TextButton(
                     onPressed: () {
                       Get.back();
-                      Get.back();
                     },
                     child: const Text(
-                      'Sign in',
+                      'Sign In',
                       style: TextStyle(
                         color: kPrimaryColor,
                       ),
