@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:tenant_app/app/utils/constants.dart';
 
+import '../../../routes/app_pages.dart';
+import '../../../utils/constants.dart';
+import '../../../widgets/error_page.dart';
 import '../controllers/splash_screen_controller.dart';
 
 class SplashScreenView extends GetView<SplashScreenController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kPrimaryColor,
-      body: Center(
+        backgroundColor: kPrimaryColor,
+        body: Center(
           child: Obx(() => controller.isError.isTrue
-              ? Icon(Icons.error)
+              ? ErrorPage(controller.errorMessage, controller.getToken)
               : Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: const [
@@ -24,9 +26,9 @@ class SplashScreenView extends GetView<SplashScreenController> {
                     Text(
                       'RENT ASSIST',
                       style: TextStyle(fontSize: 35, color: kWhiteColor),
-                    ),
+                    )
                   ],
-                ))),
-    );
+                )),
+        ));
   }
 }
