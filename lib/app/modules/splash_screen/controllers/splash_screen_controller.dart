@@ -5,6 +5,7 @@ import '../../../app_controller.dart';
 import '../../../app_repository.dart';
 import '../../../data/exception/server_exception.dart';
 import '../../../routes/app_pages.dart';
+import '../../../utils/app_utils.dart';
 
 class SplashScreenController extends GetxController {
   final isError = false.obs;
@@ -27,14 +28,18 @@ class SplashScreenController extends GetxController {
     try {
       if (appRepo.getAuthRepository().checkLogin()) {
         final appController = Get.find<AppController>();
-        var profile =
-            await Get.find<AppRepository>().getUserRepository().getUerProfile();
+        var profile = await appRepo.getUserRepository().getUerProfile();
         if (profile?.isOwner != false) {
+          appRepo.getAuthRepository().logout();
           Get.offAllNamed(Routes.LOGIN);
           return;
         }
         appController.login(profile!);
-        Get.offAllNamed(Routes.HOME);
+        if (await getOwnerDetail()) {
+          Get.offAllNamed(Routes.HOME);
+        } else {
+          Get.offAllNamed(Routes.SCAN_OWNER);
+        }
       } else {
         Get.offAllNamed(Routes.LOGIN);
       }
@@ -43,10 +48,21 @@ class SplashScreenController extends GetxController {
         isError(true);
         errorMessage = "Check your internet connection";
       } else {
+        appRepo.getAuthRepository().logout();
         Get.offAllNamed(Routes.LOGIN);
         return;
       }
     }
+  }
+
+  Future<bool> getOwnerDetail() async {
+    var owner =
+        await Get.find<AppRepository>().getUserRepository().getOwnerDetail();
+    if (owner == null) {
+      return false;
+    }
+    Get.find<AppController>().setOwner(owner);
+    return true;
   }
 
   @override

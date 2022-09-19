@@ -35,21 +35,21 @@ class AuthRepository {
     return true;
   }
 
-  // void logout() {
-  //   LoginResponseCache(_sharedPreferences).delete();
-  // }
+  void logout() {
+    _storage.remove("token");
+  }
 
   // Future<LoginResponse?> getCacheResponse() async {
   //   return await LoginResponseCache(this._sharedPreferences).get();
   // }
 
   Future<void> registerUser(RegisterRequest registerRequest) async {
-    // LoginResponse loginResponse;
-
-    await AuthApi(_dio).register(registerRequest);
-
-    // LoginResponseCache(_sharedPreferences).set(loginResponse);
-    // return loginResponse;
+    var response = await AuthApi(_dio).register(registerRequest);
+    _storage.write('token', response.key);
+    final appController = Get.find<AppController>();
+    var profile =
+        await Get.find<AppRepository>().getUserRepository().getUerProfile();
+    appController.login(profile!);
   }
 
   // Future<void> verifyOtp(VerifyOtp verifyOtp) async {

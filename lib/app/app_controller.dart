@@ -1,6 +1,7 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tenant_app/app/data/models/user/owner_detail.dart';
 import 'package:tenant_app/app/utils/constants.dart';
 
 import 'app_repository.dart';
@@ -10,6 +11,7 @@ class AppController extends GetxController {
   bool isLoggedIn = false;
   final appRepo = Get.find<AppRepository>();
   Profile? profile;
+  OwnerDetail? ownerDetail;
 
   late FirebaseMessaging messaging;
 
@@ -68,6 +70,10 @@ class AppController extends GetxController {
   void login(Profile profile) {
     this.profile = profile;
     isLoggedIn = true;
+  }
+
+  void setOwner(OwnerDetail ownerDetail) {
+    this.ownerDetail = ownerDetail;
   }
 
   // void logout() {

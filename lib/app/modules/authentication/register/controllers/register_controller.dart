@@ -78,7 +78,7 @@ class RegisterController extends GetxController {
             password2: confirmPassword,
             phoneNumber: phone));
         showSnackbar('Register Successful');
-        Get.toNamed(Routes.HOME);
+        Get.toNamed(Routes.SCAN_OWNER);
       } catch (e) {
         if (e is DioError) {
           handleError(e);
@@ -95,6 +95,10 @@ class RegisterController extends GetxController {
     var error = ServerError.withError(error: e).getError();
     print(error);
     if (error != null) {
+      if (error.containsKey('detail')) {
+        showSnackbar(error['detail'], isError: true);
+        return;
+      }
       if (error.containsKey('non_field_errors')) {
         showSnackbar(error['non_field_errors']![0], isError: true);
       }

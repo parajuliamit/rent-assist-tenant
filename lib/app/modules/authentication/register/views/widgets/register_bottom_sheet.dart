@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../../utils/app_utils.dart';
 import '../../../../../widgets/widgets.dart';
 import '../../../../../utils/constants.dart';
 import '../../controllers/register_controller.dart';
@@ -98,19 +99,16 @@ class RegisterBottomSheet extends StatelessWidget {
             const SizedBox(
               height: 30,
             ),
-            Obx(() => controller.isLoading.isTrue
-                ? const Loading(
-                    size: 100,
-                  )
-                : Center(
-                    child: CustomButton(
-                    'Submit',
-                    () {
-                      controller.register();
-                    },
-                    fillColor: kWhiteColor,
-                    textColor: kPrimaryColor,
-                  ))),
+            Center(
+                child: CustomButton(
+              'Submit',
+              () {
+                FocusScope.of(context).unfocus();
+                overlayLoading(controller.register);
+              },
+              fillColor: kWhiteColor,
+              textColor: kPrimaryColor,
+            )),
             const SizedBox(
               height: 5,
             ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tenant_app/app/routes/app_pages.dart';
 
+import '../../../../app_controller.dart';
 import '../../../../utils/constants.dart';
 import 'homepage_button.dart';
 
@@ -48,24 +49,12 @@ class LandlordContainer extends StatelessWidget {
                     const SizedBox(
                       width: 10,
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
-                        Text(
-                          'Sunil Thapa',
-                          style: TextStyle(
-                              // color: kWhiteColor,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w600),
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Text(
-                          'Leknath, Pokhara',
-                          style: TextStyle(fontSize: 14),
-                        )
-                      ],
+                    Text(
+                      '${Get.find<AppController>().ownerDetail?.firstName} ${Get.find<AppController>().ownerDetail?.lastName}',
+                      style: const TextStyle(
+                          // color: kWhiteColor,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600),
                     ),
                   ],
                 ),

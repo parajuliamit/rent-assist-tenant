@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tenant_app/app/app_controller.dart';
 
 import '../../../../app_repository.dart';
 import '../../../../data/exception/server_exception.dart';
@@ -13,7 +14,6 @@ class LoginController extends GetxController {
   final authRepo = Get.find<AppRepository>().getAuthRepository();
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
-  final isLoading = false.obs;
   late final TextEditingController emailController;
   late final TextEditingController passwordController;
 
@@ -40,13 +40,16 @@ class LoginController extends GetxController {
   }
 
   Future<void> login() async {
-    isLoading(true);
     String email = emailController.text.trim();
     String password = passwordController.text.trim();
     if (validateInput(email, password)) {
       try {
         await authRepo.login(LoginRequest(username: email, password: password));
-        Get.offAllNamed(Routes.HOME);
+        if (await getOwnerDetail()) {
+          Get.offAllNamed(Routes.HOME);
+        } else {
+          Get.offAllNamed(Routes.SCAN_OWNER);
+        }
         showSnackbar('Login Successful');
       } catch (e) {
         if (e is DioError) {
@@ -56,8 +59,25 @@ class LoginController extends GetxController {
         }
       }
     }
+  }
 
-    isLoading(false);
+  Future<bool> getOwnerDetail() async {
+    try {
+      var owner =
+          await Get.find<AppRepository>().getUserRepository().getOwnerDetail();
+      if (owner == null) {
+        return false;
+      }
+      Get.find<AppController>().setOwner(owner);
+      return true;
+    } catch (e) {
+      if (e is DioError) {
+        showSnackbar(ServerError.withError(error: e).getErrorMessage());
+      } else {
+        showSnackbar(e.toString(), isBottom: false, isError: true);
+      }
+      return false;
+    }
   }
 
   // void registerDeviceId() async {
@@ -89,6 +109,10 @@ class LoginController extends GetxController {
   void handleError(DioError e) {
     var error = ServerError.withError(error: e).getError();
     if (error != null) {
+      if (error.containsKey('detail')) {
+        showSnackbar(error['detail'], isError: true);
+        return;
+      }
       if (error.containsKey('non_field_errors')) {
         showSnackbar(error['non_field_errors']![0], isError: true);
       }

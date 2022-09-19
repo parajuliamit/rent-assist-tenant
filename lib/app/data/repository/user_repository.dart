@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:tenant_app/app/data/models/user/owner_detail.dart';
 import 'package:tenant_app/app/data/models/user/profile.dart';
 
 import '../api/user/user_api.dart';
@@ -10,5 +11,9 @@ class UserRepository {
 
   Future<Profile?> getUerProfile() async {
     return (await UserApi(_dio).getProfile()).data;
+  }
+
+  Future<OwnerDetail?> getOwnerDetail() async {
+    return (await UserApi(_dio).getOwnerDetails()).details;
   }
 }
