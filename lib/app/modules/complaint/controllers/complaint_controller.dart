@@ -1,12 +1,18 @@
+import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:tenant_app/app/app_repository.dart';
+import 'package:tenant_app/app/data/exception/server_exception.dart';
+import 'package:tenant_app/app/data/models/complaints/complaints._response.dart';
 
 class ComplaintController extends GetxController {
   final appRepo = Get.find<AppRepository>();
   final isError = false.obs;
   final isLoading = false.obs;
 
-  final count = 0.obs;
+  String errorMessage = '';
+
+  List<Complaint> complaints = [];
+
   @override
   void onInit() {
     super.onInit();
@@ -17,9 +23,16 @@ class ComplaintController extends GetxController {
     isError(false);
     isLoading(true);
 
-    try {} catch (e) {
+    try {
+      complaints = await appRepo.getComplaintsRepository().getComplaints();
+    } catch (e) {
       print(e);
       isError(true);
+      if (e is DioError) {
+        errorMessage = ServerError.withError(error: e).getErrorMessage();
+      } else {
+        errorMessage = e.toString();
+      }
     }
     isLoading(false);
   }
@@ -31,5 +44,4 @@ class ComplaintController extends GetxController {
 
   @override
   void onClose() {}
-  void increment() => count.value++;
 }

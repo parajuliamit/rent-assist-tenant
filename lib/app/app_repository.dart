@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
+import 'package:tenant_app/app/data/repository/complaint_repository.dart';
 
 import 'data/interceptor/authentication_interceptor.dart';
 import 'data/repository/auth_repository.dart';
@@ -38,5 +39,9 @@ class AppRepository extends GetxService {
 
   UserRepository getUserRepository() {
     return UserRepository(_dioClient);
+  }
+
+  ComplaintRepository getComplaintsRepository() {
+    return ComplaintRepository(_dioClient);
   }
 }
