@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:tenant_app/app/modules/pay/views/select_payment_view.dart';
+import 'package:khalti_flutter/khalti_flutter.dart';
 import 'package:tenant_app/app/utils/constants.dart';
 import 'package:tenant_app/app/widgets/widgets.dart';
 
@@ -78,13 +78,32 @@ class PayView extends GetView<PayController> {
                     const SizedBox(
                       height: 20,
                     ),
-                    CustomButton(
-                      'Pay Now',
-                      () {
-                        Get.to(() => SelectPaymentView());
+                    // CustomButton(
+                    //   'Pay Now',
+                    //   () {
+                    //     Get.to(() => SelectPaymentView());
+                    //   },
+                    //   fillColor: kWhiteColor,
+                    //   textColor: kPrimaryColor,
+                    // ),
+                    KhaltiButton(
+                      config: controller.config,
+                      // preferences: [
+                      //   // Not providing this will enable all the payment methods.
+                      //   PaymentPreference.khalti,
+                      //   PaymentPreference.eBanking,
+                      // ],
+                      onSuccess: (successModel) {
+                        print(successModel.idx);
+                        print(successModel.amount);
+                        // Perform Server Verification
                       },
-                      fillColor: kWhiteColor,
-                      textColor: kPrimaryColor,
+                      onFailure: (failureModel) {
+                        // What to do on failure?
+                      },
+                      onCancel: () {
+                        // User manually cancelled the transaction
+                      },
                     ),
                     SizedBox(
                       height: 10,
