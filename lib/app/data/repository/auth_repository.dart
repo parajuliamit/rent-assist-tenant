@@ -6,8 +6,8 @@ import '../../app_controller.dart';
 import '../../app_repository.dart';
 import '../api/auth/auth_api.dart';
 import '../models/auth/login_request.dart';
+import '../models/auth/register_device_request.dart';
 import '../models/auth/register_request.dart';
-import '../models/user/profile.dart';
 
 class AuthRepository {
   final GetStorage _storage;
@@ -39,9 +39,10 @@ class AuthRepository {
     _storage.remove("token");
   }
 
-  // Future<LoginResponse?> getCacheResponse() async {
-  //   return await LoginResponseCache(this._sharedPreferences).get();
-  // }
+  Future<void> registerDevice(
+      RegisterDeviceRequest registerDeviceRequest) async {
+    return await AuthApi(_dio).registerDevice(registerDeviceRequest);
+  }
 
   Future<void> registerUser(RegisterRequest registerRequest) async {
     var response = await AuthApi(_dio).register(registerRequest);

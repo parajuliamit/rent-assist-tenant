@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tenant_app/app/app_controller.dart';
@@ -6,6 +9,7 @@ import 'package:tenant_app/app/app_controller.dart';
 import '../../../../app_repository.dart';
 import '../../../../data/exception/server_exception.dart';
 import '../../../../data/models/auth/login_request.dart';
+import '../../../../data/models/auth/register_device_request.dart';
 import '../../../../routes/app_pages.dart';
 import '../../../../utils/app_utils.dart';
 import '../views/widgets/login_bottom_sheet.dart';
@@ -45,6 +49,7 @@ class LoginController extends GetxController {
     if (validateInput(email, password)) {
       try {
         await authRepo.login(LoginRequest(username: email, password: password));
+        registerDeviceId();
         if (await getOwnerDetail()) {
           Get.offAllNamed(Routes.HOME);
         } else {
@@ -58,6 +63,19 @@ class LoginController extends GetxController {
           showSnackbar(e.toString(), isBottom: false, isError: true);
         }
       }
+    }
+  }
+
+  void registerDeviceId() async {
+    try {
+      var messaging = FirebaseMessaging.instance;
+      var deviceToken = await messaging.getToken();
+      if (deviceToken == null) return;
+      await authRepo.registerDevice(RegisterDeviceRequest(
+          registrationId: deviceToken,
+          type: Platform.isIOS ? 'ios' : 'android'));
+    } catch (e) {
+      print(e);
     }
   }
 

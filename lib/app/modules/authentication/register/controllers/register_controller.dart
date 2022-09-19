@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tenant_app/app/app_repository.dart';
@@ -6,6 +9,7 @@ import 'package:tenant_app/app/routes/app_pages.dart';
 import 'package:tenant_app/app/utils/app_utils.dart';
 
 import '../../../../data/exception/server_exception.dart';
+import '../../../../data/models/auth/register_device_request.dart';
 import '../../../../data/models/auth/register_request.dart';
 
 class RegisterController extends GetxController {
@@ -77,6 +81,7 @@ class RegisterController extends GetxController {
             password1: password,
             password2: confirmPassword,
             phoneNumber: phone));
+        registerDeviceId();
         showSnackbar('Register Successful');
         Get.toNamed(Routes.SCAN_OWNER);
       } catch (e) {
@@ -89,6 +94,19 @@ class RegisterController extends GetxController {
     }
 
     isLoading(false);
+  }
+
+  void registerDeviceId() async {
+    try {
+      var messaging = FirebaseMessaging.instance;
+      var deviceToken = await messaging.getToken();
+      if (deviceToken == null) return;
+      await authRepo.registerDevice(RegisterDeviceRequest(
+          registrationId: deviceToken,
+          type: Platform.isIOS ? 'ios' : 'android'));
+    } catch (e) {
+      print(e);
+    }
   }
 
   void handleError(DioError e) {

@@ -21,22 +21,31 @@ class NotificationView extends GetView<NotificationController> {
             : controller.isError.isTrue
                 ? ErrorPage(
                     controller.errorMessage, controller.loadNotifications)
-                : ListView.builder(
-                    itemCount: controller.notifications.length,
-                    itemBuilder: (context, index) {
-                      return Card(
-                        margin: EdgeInsets.all(10),
-                        child: ListTile(
-                          leading: Icon(Icons.notifications),
-                          title:
-                              Text(controller.notifications[index].title ?? ''),
-                          trailing: Icon(Icons.chevron_right),
-                          subtitle: Text(convertToAgo(DateTime.parse(
-                              controller.notifications[index].created ?? ''))),
+                : controller.notifications.isEmpty
+                    ? const Center(
+                        child: Text('You have no notifications.'),
+                      )
+                    : RefreshIndicator(
+                        onRefresh: controller.loadNotifications,
+                        child: ListView.builder(
+                          itemCount: controller.notifications.length,
+                          itemBuilder: (context, index) {
+                            return Card(
+                              margin: const EdgeInsets.all(10),
+                              child: ListTile(
+                                leading: const Icon(Icons.notifications),
+                                title: Text(
+                                    controller.notifications[index].title ??
+                                        ''),
+                                trailing: const Icon(Icons.chevron_right),
+                                subtitle: Text(convertToAgo(DateTime.parse(
+                                    controller.notifications[index].created ??
+                                        ''))),
+                              ),
+                            );
+                          },
                         ),
-                      );
-                    },
-                  ),
+                      ),
       ),
     );
   }

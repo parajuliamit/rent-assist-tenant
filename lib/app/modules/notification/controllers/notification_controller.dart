@@ -20,7 +20,7 @@ class NotificationController extends GetxController {
     loadNotifications();
   }
 
-  void loadNotifications() async {
+  Future<void> loadNotifications() async {
     isError(false);
     isLoading(true);
 

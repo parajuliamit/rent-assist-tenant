@@ -35,11 +35,11 @@ class SplashScreenController extends GetxController {
           return;
         }
         appController.login(profile!);
-        if (await getOwnerDetail()) {
-          Get.offAllNamed(Routes.HOME);
-        } else {
-          Get.offAllNamed(Routes.SCAN_OWNER);
-        }
+        // if (await getOwnerDetail()) {
+        Get.offAllNamed(Routes.HOME);
+        // } else {
+        //   Get.offAllNamed(Routes.SCAN_OWNER);
+        // }
       } else {
         Get.offAllNamed(Routes.LOGIN);
       }

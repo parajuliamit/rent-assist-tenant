@@ -6,17 +6,13 @@ class NotificationResponse {
   Meta? meta;
 
   NotificationResponse.fromJson(Map<String, dynamic> json) {
-    if (json["success"] is bool) this.success = json["success"];
-    if (json["message"] is String) this.message = json["message"];
-    if (json["data"] is List)
-      this.notifications = json["data"] == null
-          ? []
-          : (json["data"] as List)
-              .map((e) => Notification.fromJson(e))
-              .toList();
-    if (json["errors"] is List) this.errors = json["errors"] ?? [];
-    if (json["meta"] is Map)
-      this.meta = json["meta"] == null ? null : Meta.fromJson(json["meta"]);
+    this.success = json["success"];
+    this.message = json["message"];
+    this.notifications = json["data"] == null
+        ? []
+        : (json["data"] as List).map((e) => Notification.fromJson(e)).toList();
+    this.errors = json["errors"] ?? [];
+    this.meta = json["meta"] == null ? null : Meta.fromJson(json["meta"]);
   }
 }
 
