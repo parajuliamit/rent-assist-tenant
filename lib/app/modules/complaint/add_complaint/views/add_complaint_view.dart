@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:tenant_app/app/modules/complaint/add_complaint/views/widgets/add_image_container.dart';
 import 'package:tenant_app/app/modules/complaint/add_complaint/views/widgets/complain_input.dart';
 import 'package:tenant_app/app/widgets/widgets.dart';
 
@@ -12,7 +13,7 @@ class AddComplaintView extends GetView<AddComplaintController> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('New Complaint'),
+          title: const Text('New Complaint'),
           centerTitle: false,
         ),
         body: SingleChildScrollView(
@@ -21,24 +22,24 @@ class AddComplaintView extends GetView<AddComplaintController> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   'Select a category',
                   style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Container(
-                  padding: EdgeInsets.all(3),
+                  padding: const EdgeInsets.all(3),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       border: Border.all(color: kPrimaryColor)),
                   child: DropdownButtonHideUnderline(
                     child: DropdownButton(
-                        icon: Icon(Icons.keyboard_arrow_down),
+                        icon: const Icon(Icons.keyboard_arrow_down),
                         elevation: 3,
                         isExpanded: true,
-                        items: [
+                        items: const [
                           DropdownMenuItem(
                               value: 1, child: Text('Water problem')),
                           DropdownMenuItem(
@@ -48,55 +49,43 @@ class AddComplaintView extends GetView<AddComplaintController> {
                           DropdownMenuItem(
                               value: 4, child: Text('What problem')),
                           DropdownMenuItem(
-                              value: 5, child: Text('This problem')),
+                              value: 5, child: Text('Other problems')),
                         ],
                         onChanged: (value) {}),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
-                ComplainInput('Title'),
-                SizedBox(
+                const ComplainInput(
+                  'Title',
+                ),
+                const SizedBox(
                   height: 10,
                 ),
-                ComplainInput(
+                const ComplainInput(
                   "Description",
                   maxlines: 5,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
-                Text(
+                const Text(
                   'Urgency Level',
                   style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
                 ),
                 Slider(
                   value: 3,
                   min: 1.0,
-                  max: 5.0,
-                  divisions: 5,
+                  max: 3.0,
+                  divisions: 3,
                   activeColor: kPrimaryColor,
                   inactiveColor: kGreyColor,
                   label: 'Urgent',
                   onChanged: (double newValue) {},
                 ),
-                const Text(
-                  'Add image',
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
-                ),
-                SizedBox(height: 5),
-                Container(
-                  height: 100,
-                  width: 100,
-                  padding: const EdgeInsets.all(5),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: kGreyColor.withOpacity(0.5),
-                  ),
-                  child: Icon(Icons.add),
-                ),
-                SizedBox(
+                const InsertImageContainer(),
+                const SizedBox(
                   height: 10,
                 ),
                 CustomButton('Submit', () {})
