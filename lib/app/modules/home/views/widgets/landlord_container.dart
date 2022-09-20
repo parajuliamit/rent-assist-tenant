@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tenant_app/app/modules/authentication/otp_verification/views/otp_verification_view.dart';
 import 'package:tenant_app/app/routes/app_pages.dart';
 
 import '../../../../app_controller.dart';
@@ -81,7 +82,9 @@ class LandlordContainer extends StatelessWidget {
                           text: 'Message',
                           textColor: kWhiteColor,
                           fillColor: kPrimaryColor,
-                          onpress: () {}),
+                          onpress: () {
+                            Get.to(OtpVerificationView());
+                          }),
                     )
                   ],
                 ),
