@@ -37,6 +37,7 @@ class AuthRepository {
 
   void logout() {
     _storage.remove("token");
+    Get.find<AppController>().logout();
   }
 
   Future<void> registerDevice(

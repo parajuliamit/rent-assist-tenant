@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:tenant_app/app/modules/account/change_password/views/change_password_view.dart';
-import 'package:tenant_app/app/modules/account/saved_payment/views/saved_payment_view.dart';
 import 'package:tenant_app/app/modules/account/widgets/logout_button.dart';
 
 import '../../../routes/app_pages.dart';
 import '../controllers/account_controller.dart';
+import '../saved_payment/views/saved_payment_view.dart';
 import '../widgets/item_tile.dart';
 
 class AccountView extends GetView<AccountController> {
@@ -26,7 +25,7 @@ class AccountView extends GetView<AccountController> {
               icon: Icons.save_alt_rounded,
               label: 'Saved Payment',
               onPress: () {
-                Get.to(() => SavedPaymentView());
+                Get.toNamed(Routes.SAVED_PAYMENT);
               },
             ),
             ItemTile(
@@ -40,27 +39,12 @@ class AccountView extends GetView<AccountController> {
               icon: Icons.change_circle_outlined,
               label: 'Change Password',
               onPress: () {
-                // Get.to(() => ChangePasswordView());
                 Get.toNamed(Routes.CHANGE_PASSWORD);
               },
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
-            // TextButton.icon(
-            //   style: TextButton.styleFrom(
-            //     textStyle: TextStyle(color: Colors.blue),
-            //     backgroundColor: kPrimaryColor,
-            //     shape: RoundedRectangleBorder(
-            //       borderRadius: BorderRadius.circular(10.0),
-            //     ),
-            //   ),
-            //   onPressed: () => {},
-            //   icon: Icon(Icons.logout),
-            //   label: Text(
-            //     'Logout',
-            //   ),
-            // ),
             LogoutButton(),
           ],
         )),

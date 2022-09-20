@@ -76,8 +76,9 @@ class AppController extends GetxController {
     this.ownerDetail = ownerDetail;
   }
 
-  // void logout() {
-  //   isLoggedIn = false;
-  //   profile = null;
-  // }
+  void logout() {
+    isLoggedIn = false;
+    profile = null;
+    ownerDetail = null;
+  }
 }
