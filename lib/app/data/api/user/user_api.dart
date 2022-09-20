@@ -17,6 +17,6 @@ abstract class UserApi {
   @GET("/api/users/my-owner/")
   Future<OwnerDetailResponse> getOwnerDetails();
 
-  @GET("/api/notifications/")
+  @GET("/api/notifications/notification/")
   Future<NotificationResponse> getNotifications();
 }
