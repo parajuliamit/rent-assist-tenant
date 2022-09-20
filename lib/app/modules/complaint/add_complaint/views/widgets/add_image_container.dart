@@ -2,11 +2,14 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart';
+import 'package:tenant_app/app/modules/complaint/add_complaint/controllers/add_complaint_controller.dart';
 
 import '../../../../../utils/constants.dart';
+import 'icon_container.dart';
 
 class InsertImageContainer extends StatefulWidget {
   const InsertImageContainer({
@@ -31,6 +34,7 @@ class _InsertImageContainerState extends State<InsertImageContainer> {
       setState(() {
         this._image = imagePermanent;
       });
+      Get.find<AddComplaintController>().image = imagePermanent;
     } on PlatformException catch (e) {
       print('failed to pick image $e');
     }
@@ -44,66 +48,113 @@ class _InsertImageContainerState extends State<InsertImageContainer> {
     return File(imagePath).copy(image.path);
   }
 
+  Future<void> selectImage(context) async {
+    await showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: const Text('Select Image Source'),
+            content: Row(
+              children: [
+                Expanded(
+                  child: IconContainer(
+                      icon: Icons.camera_alt_outlined,
+                      title: 'Camera',
+                      onTap: () async {
+                        await getImage(ImageSource.camera);
+                        Navigator.pop(context);
+                      }),
+                ),
+                const SizedBox(
+                  width: 15,
+                ),
+                Expanded(
+                  child: IconContainer(
+                      icon: Icons.image_outlined,
+                      title: 'Gallery',
+                      onTap: () async {
+                        await getImage(ImageSource.gallery);
+                        Navigator.pop(context);
+                      }),
+                ),
+              ],
+            ),
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text(
-          'Insert Image',
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
-        ),
-        const SizedBox(
-          height: 10,
-        ),
-        GestureDetector(
-          child: Container(
-            height: 50,
-            width: 50,
-            padding: const EdgeInsets.all(5),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: kGreyColor.withOpacity(0.5),
+    return _image == null
+        ? GestureDetector(
+            child: Container(
+              width: MediaQuery.of(context).size.width * 0.5,
+              height: MediaQuery.of(context).size.width * 0.5,
+              padding: const EdgeInsets.all(5),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: kGreyColor.withOpacity(0.5),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  Icon(
+                    Icons.add,
+                    size: 40,
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Text(
+                    'Add Image',
+                  )
+                ],
+              ),
             ),
-            child: Icon(Icons.add),
-          ),
-          onTap: () {
-            getImage(ImageSource.camera);
-          },
-        ),
-        const SizedBox(
-          height: 10,
-        ),
-        Container(
-          // height: 200,
-          width: MediaQuery.of(context).size.width,
-          padding: const EdgeInsets.all(5),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: kGreyColor.withOpacity(0.5),
-          ),
-          child: Column(
+            onTap: () async {
+              await selectImage(context);
+            },
+          )
+        : Row(
             children: [
-              _image != null
-                  ? Image.file(
-                      _image!,
-                      height: 250,
-                      width: 250,
-                      fit: BoxFit.cover,
-                    )
-                  : const Text('Insert a image'),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.file(
+                  _image!,
+                  width: MediaQuery.of(context).size.width * 0.5,
+                  height: MediaQuery.of(context).size.width * 0.5,
+                  fit: BoxFit.cover,
+                ),
+              ),
+              const SizedBox(
+                width: 20,
+              ),
+              Column(
+                children: [
+                  FloatingActionButton(
+                    onPressed: () async {
+                      await selectImage(context);
+                    },
+                    child: const Icon(
+                      Icons.refresh,
+                      color: Colors.white,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  FloatingActionButton(
+                    onPressed: () {
+                      setState(() {
+                        _image = null;
+                      });
+                    },
+                    child:
+                        const Icon(Icons.delete_outline, color: Colors.white),
+                  ),
+                ],
+              )
             ],
-          ),
-        ),
-        // _image != null
-        // ? Image.file(
-        //     _image!,
-        //     height: 250,
-        //     width: 250,
-        //     fit: BoxFit.cover,
-        //   )
-        // : const Text('Insert a image'),
-      ],
-    );
+          );
   }
 }

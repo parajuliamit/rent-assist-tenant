@@ -28,6 +28,8 @@ class ComplainInput extends StatelessWidget {
       // style: const TextStyle(fontWeight: FontWeight.bold),
       cursorColor: Colors.black,
       decoration: InputDecoration(
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20),
           borderSide: BorderSide(color: kPrimaryColor, width: 1),

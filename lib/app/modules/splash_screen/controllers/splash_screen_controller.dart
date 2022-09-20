@@ -48,7 +48,7 @@ class SplashScreenController extends GetxController {
         isError(true);
         errorMessage = "Check your internet connection";
       } else {
-        showSnackbar(e.toString());
+        showSnackbar(e.toString().substring(0, 100), isError: true);
         appRepo.getAuthRepository().logout();
         Get.offAllNamed(Routes.LOGIN);
         return;

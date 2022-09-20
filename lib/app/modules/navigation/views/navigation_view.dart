@@ -72,7 +72,7 @@ class BottomBarIcon extends StatelessWidget {
       icon: Icon(
         icon,
         color: controller.selectedIndex.value == index
-            ? Colors.black
+            ? kPrimaryColor
             : Colors.grey,
       ),
     );
