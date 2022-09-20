@@ -77,7 +77,7 @@ class RegisterController extends GetxController {
         await authRepo.registerUser(RegisterRequest(
             firstName: fname,
             lastName: lname,
-            username: email,
+            email: email,
             password1: password,
             password2: confirmPassword,
             phoneNumber: phone));

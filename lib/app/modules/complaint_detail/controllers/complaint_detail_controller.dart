@@ -1,12 +1,14 @@
 import 'package:get/get.dart';
 
-class ComplaintDetailController extends GetxController {
-  //TODO: Implement ComplaintDetailController
+import '../../../data/models/complaints/complaints._response.dart';
 
-  final count = 0.obs;
+class ComplaintDetailController extends GetxController {
+  Complaint? complaint;
   @override
   void onInit() {
     super.onInit();
+    print(Get.arguments);
+    complaint = Get.arguments as Complaint;
   }
 
   @override
@@ -16,5 +18,4 @@ class ComplaintDetailController extends GetxController {
 
   @override
   void onClose() {}
-  void increment() => count.value++;
 }

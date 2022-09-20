@@ -6,11 +6,26 @@ import '../../../utils/constants.dart';
 import '../controllers/complaint_detail_controller.dart';
 
 class ComplaintDetailView extends GetView<ComplaintDetailController> {
+  Color getColor(String urgencyLevel) {
+    if (urgencyLevel == "H") return Colors.red;
+    if (urgencyLevel == "I") return Colors.yellow;
+    if (urgencyLevel == "L") return Colors.green;
+    return Colors.blueGrey;
+  }
+
+  Text getText(String urgencyLevel) {
+    if (urgencyLevel == "H") return Text('High');
+    if (urgencyLevel == "I") return Text('Intermediate');
+    if (urgencyLevel == "L") return Text('Low');
+    return Text('Level');
+  }
+
+  // var data = Get.arguments;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('ComplaintDetailView'),
+          title: Text(controller.complaint?.title ?? ''),
           centerTitle: true,
         ),
         body: SingleChildScrollView(
@@ -19,46 +34,68 @@ class ComplaintDetailView extends GetView<ComplaintDetailController> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'Problem category',
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+                Row(
+                  children: [
+                    const Text(
+                      'Urgency level:',
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      controller.complaint?.urgencyLevel ?? ''.toString(),
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: getColor(controller.complaint?.urgencyLevel ??
+                            ''.toString()),
+                      ),
+                    ),
+                  ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
-                SizedBox(
-                  height: 10,
-                ),
-                // ComplainInput('Title'),
-                // SizedBox(
-                //   height: 10,
-                // ),
-                // ComplainInput(
-                //   "Description",
-                //   maxlines: 5,
-                // ),
-                SizedBox(
-                  height: 20,
-                ),
-                Text(
-                  'Urgency Level',
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
-                ),
-
                 const Text(
-                  'Problem Images',
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+                  'Description',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
                 ),
-                SizedBox(height: 5),
+                const SizedBox(
+                  height: 5,
+                ),
                 Container(
-                  height: 100,
-                  width: 100,
+                  width: MediaQuery.of(context).size.width,
+                  height: 300,
                   padding: const EdgeInsets.all(5),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     color: kGreyColor.withOpacity(0.5),
                   ),
-                  child: Icon(Icons.add),
+                  child: Text(
+                    controller.complaint?.description ?? '',
+                    style: const TextStyle(color: Colors.black),
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                const Text(
+                  'Problem Images',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                ),
+                const SizedBox(height: 5),
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: 200,
+                  padding: const EdgeInsets.all(5),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: kGreyColor.withOpacity(0.5),
+                  ),
+                  child: Image.network(
+                      baseUrl + '${controller.complaint?.image ?? ''}'),
                 ),
               ],
             ),

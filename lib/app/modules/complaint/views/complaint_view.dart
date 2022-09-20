@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:tenant_app/app/data/models/complaints/complaints._response.dart';
 import 'package:tenant_app/app/widgets/error_page.dart';
 import 'package:tenant_app/app/widgets/loading.dart';
 
+import '../../../routes/app_pages.dart';
 import '../../../utils/time_ago.dart';
 import '../controllers/complaint_controller.dart';
 
@@ -36,7 +38,21 @@ class ComplaintView extends GetView<ComplaintController> {
                   itemCount: controller.complaints.length,
                   itemBuilder: (context, index) {
                     return GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Get.toNamed(Routes.COMPLAINT_DETAIL,
+                            arguments: controller.complaints[index]
+                            // Complaint(
+                            //     id: controller.complaints[index].id,
+                            //     title: controller.complaints[index].title,
+                            //     description:
+                            //         controller.complaints[index].description,
+                            //     date: controller.complaints[index].date,
+                            //     urgencyLevel:
+                            //         controller.complaints[index].urgencyLevel,
+                            //     tenant: controller.complaints[index].tenant,
+                            //     image: controller.complaints[index].image),
+                            );
+                      },
                       child: Card(
                         margin: const EdgeInsets.all(10),
                         child: ListTile(
