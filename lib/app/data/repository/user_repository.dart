@@ -9,7 +9,7 @@ class UserRepository {
 
   UserRepository(this._dio);
 
-  Future<Profile?> getUerProfile() async {
+  Future<Profile?> getUserProfile() async {
     return (await UserApi(_dio).getProfile()).data;
   }
 

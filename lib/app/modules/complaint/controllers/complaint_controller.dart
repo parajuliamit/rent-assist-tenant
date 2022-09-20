@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:tenant_app/app/app_repository.dart';
 import 'package:tenant_app/app/data/exception/server_exception.dart';
-import 'package:tenant_app/app/data/models/complaints/complaints._response.dart';
+import 'package:tenant_app/app/data/models/complaints/complaints_response.dart';
 
 class ComplaintController extends GetxController {
   final appRepo = Get.find<AppRepository>();

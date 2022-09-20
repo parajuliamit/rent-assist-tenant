@@ -20,7 +20,7 @@ class AuthRepository {
     _storage.write('token', response.key);
     final appController = Get.find<AppController>();
     var profile =
-        await Get.find<AppRepository>().getUserRepository().getUerProfile();
+        await Get.find<AppRepository>().getUserRepository().getUserProfile();
     // if (profile?.isOwner != false) {
     //   throw Exception('You are not a tenant');
     // }
@@ -50,7 +50,7 @@ class AuthRepository {
     _storage.write('token', response.key);
     final appController = Get.find<AppController>();
     var profile =
-        await Get.find<AppRepository>().getUserRepository().getUerProfile();
+        await Get.find<AppRepository>().getUserRepository().getUserProfile();
     appController.login(profile!);
   }
 

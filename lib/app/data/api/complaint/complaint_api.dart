@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
-import '../../models/complaints/complaints._response.dart';
+import '../../models/complaints/complaints_response.dart';
 
 part 'complaint_api.g.dart';
 
@@ -9,6 +9,6 @@ part 'complaint_api.g.dart';
 abstract class ComplaintApi {
   factory ComplaintApi(Dio dio) = _ComplaintApi;
 
-  @POST("/api/complaints/")
-  Future<ComplaintsResponse> postComplaints();
+  @GET("/api/complaints/")
+  Future<ComplaintsResponse> getComplaints();
 }

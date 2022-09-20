@@ -28,7 +28,7 @@ class SplashScreenController extends GetxController {
     try {
       if (appRepo.getAuthRepository().checkLogin()) {
         final appController = Get.find<AppController>();
-        var profile = await appRepo.getUserRepository().getUerProfile();
+        var profile = await appRepo.getUserRepository().getUserProfile();
         if (profile?.isOwner != false) {
           appRepo.getAuthRepository().logout();
           Get.offAllNamed(Routes.LOGIN);

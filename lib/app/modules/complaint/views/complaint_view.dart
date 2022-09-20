@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:tenant_app/app/data/models/complaints/complaints._response.dart';
 import 'package:tenant_app/app/widgets/error_page.dart';
 import 'package:tenant_app/app/widgets/loading.dart';
 
@@ -12,16 +11,16 @@ import '../controllers/complaint_controller.dart';
 class ComplaintView extends GetView<ComplaintController> {
   Color getColor(String urgencyLevel) {
     if (urgencyLevel == "H") return Colors.red;
-    if (urgencyLevel == "I") return Colors.yellow;
-    if (urgencyLevel == "L") return Colors.green;
+    if (urgencyLevel == "I") return Colors.deepOrange;
+    if (urgencyLevel == "L") return Colors.deepPurple;
     return Colors.blueGrey;
   }
 
-  Icon getIcon(String urgencyLevel) {
-    if (urgencyLevel == "H") return Icon(Icons.gpp_maybe_outlined);
-    if (urgencyLevel == "I") return Icon(Icons.error);
-    if (urgencyLevel == "L") return Icon(Icons.priority_high_outlined);
-    return Icon(Icons.report_off_outlined);
+  IconData getIcon(String urgencyLevel) {
+    if (urgencyLevel == "H") return Icons.gpp_maybe_outlined;
+    if (urgencyLevel == "I") return Icons.error;
+    if (urgencyLevel == "L") return Icons.priority_high_outlined;
+    return Icons.warning;
   }
 
   @override
@@ -40,24 +39,15 @@ class ComplaintView extends GetView<ComplaintController> {
                     return GestureDetector(
                       onTap: () {
                         Get.toNamed(Routes.COMPLAINT_DETAIL,
-                            arguments: controller.complaints[index]
-                            // Complaint(
-                            //     id: controller.complaints[index].id,
-                            //     title: controller.complaints[index].title,
-                            //     description:
-                            //         controller.complaints[index].description,
-                            //     date: controller.complaints[index].date,
-                            //     urgencyLevel:
-                            //         controller.complaints[index].urgencyLevel,
-                            //     tenant: controller.complaints[index].tenant,
-                            //     image: controller.complaints[index].image),
-                            );
+                            arguments: controller.complaints[index]);
                       },
                       child: Card(
                         margin: const EdgeInsets.all(10),
                         child: ListTile(
                           leading: Icon(
-                            Icons.error_outline,
+                            getIcon(controller.complaints[index].urgencyLevel
+                                .toString()),
+                            size: 30,
                             color: getColor(controller
                                 .complaints[index].urgencyLevel
                                 .toString()),

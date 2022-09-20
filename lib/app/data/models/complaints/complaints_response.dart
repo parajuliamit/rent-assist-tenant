@@ -9,13 +9,11 @@ class ComplaintsResponse {
   ComplaintsResponse.fromJson(Map<String, dynamic> json) {
     if (json["success"] is bool) this.success = json["success"];
     if (json["message"] is String) this.message = json["message"];
-    if (json["data"] is List)
-      this.complaints = json["data"] == null
-          ? []
-          : (json["data"] as List).map((e) => Complaint.fromJson(e)).toList();
-    if (json["errors"] is List) this.errors = json["errors"] ?? [];
-    if (json["meta"] is Map)
-      this.meta = json["meta"] == null ? null : Meta.fromJson(json["meta"]);
+    this.complaints = json["data"] == null
+        ? []
+        : (json["data"] as List).map((e) => Complaint.fromJson(e)).toList();
+    this.errors = json["errors"] ?? [];
+    this.meta = json["meta"] == null ? null : Meta.fromJson(json["meta"]);
     if (json["messgae"] is String) this.messgae = json["messgae"];
   }
 }
@@ -61,15 +59,15 @@ class Complaint {
     if (json["tenant"] is int) this.tenant = json["tenant"];
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data["id"] = this.id;
-    data["image"] = this.image;
-    data["title"] = this.title;
-    data["description"] = this.description;
-    data["date"] = this.date;
-    data["urgency_level"] = this.urgencyLevel;
-    data["tenant"] = this.tenant;
-    return data;
-  }
+  // Map<String, dynamic> toJson() {
+  //   final Map<String, dynamic> data = new Map<String, dynamic>();
+  //   // data["id"] = this.id;
+  //   data["image"] = this.image;
+  //   data["title"] = this.title;
+  //   data["description"] = this.description;
+  //   // data["date"] = this.date;
+  //   data["urgency_level"] = this.urgencyLevel;
+  //   data["tenant"] = this.tenant;
+  //   return data;
+  // }
 }

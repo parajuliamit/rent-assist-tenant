@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:tenant_app/app/data/models/user/owner_detail.dart';
 
-import '../../models/complaints/complaints._response.dart';
 import '../../models/notifications/notification_response.dart';
 import '../../models/user/profile.dart';
 
@@ -17,9 +16,6 @@ abstract class UserApi {
 
   @GET("/api/users/my-owner/")
   Future<OwnerDetailResponse> getOwnerDetails();
-
-  @GET("/api/complaints/")
-  Future<ComplaintsResponse> getComplaints();
 
   @GET("/api/notifications/")
   Future<NotificationResponse> getNotifications();

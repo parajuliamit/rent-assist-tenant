@@ -13,20 +13,18 @@ class ComplaintDetailView extends GetView<ComplaintDetailController> {
     return Colors.blueGrey;
   }
 
-  Text getText(String urgencyLevel) {
-    if (urgencyLevel == "H") return Text('High');
-    if (urgencyLevel == "I") return Text('Intermediate');
-    if (urgencyLevel == "L") return Text('Low');
-    return Text('Level');
+  String getText(String urgencyLevel) {
+    if (urgencyLevel == "H") return 'High';
+    if (urgencyLevel == "I") return 'Intermediate';
+    if (urgencyLevel == "L") return 'Low';
+    return urgencyLevel;
   }
 
-  // var data = Get.arguments;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(controller.complaint?.title ?? ''),
-          centerTitle: true,
+          title: const Text("Complaint Detail"),
         ),
         body: SingleChildScrollView(
           child: Padding(
@@ -36,18 +34,45 @@ class ComplaintDetailView extends GetView<ComplaintDetailController> {
               children: [
                 Row(
                   children: [
-                    const Text(
-                      'Urgency level:',
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                    Text(
+                      'Status:',
+                      style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.grey.shade700),
                     ),
                     const SizedBox(
-                      width: 10,
+                      width: 5,
+                    ),
+                    const Text(
+                      'Pending',
+                      style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.blue),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                Row(
+                  children: [
+                    Text(
+                      'Urgency Level:',
+                      style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.grey.shade700),
+                    ),
+                    const SizedBox(
+                      width: 5,
                     ),
                     Text(
-                      controller.complaint?.urgencyLevel ?? ''.toString(),
+                      getText(
+                          controller.complaint?.urgencyLevel ?? ''.toString()),
                       style: TextStyle(
-                        fontSize: 20,
+                        fontSize: 18,
                         fontWeight: FontWeight.bold,
                         color: getColor(controller.complaint?.urgencyLevel ??
                             ''.toString()),
@@ -58,44 +83,49 @@ class ComplaintDetailView extends GetView<ComplaintDetailController> {
                 const SizedBox(
                   height: 10,
                 ),
-                const Text(
-                  'Description',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
                 Container(
                   width: MediaQuery.of(context).size.width,
-                  height: 300,
-                  padding: const EdgeInsets.all(5),
+                  padding: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: kGreyColor.withOpacity(0.5),
-                  ),
-                  child: Text(
-                    controller.complaint?.description ?? '',
-                    style: const TextStyle(color: Colors.black),
+                      borderRadius: BorderRadius.circular(10),
+                      color: kGreyColor.withOpacity(0.3),
+                      border: Border.all(color: kGreyColor)),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        controller.complaint?.title ?? '',
+                        style: const TextStyle(fontSize: 18),
+                      ),
+                      Text(
+                        controller.complaint?.description ?? '',
+                        style: const TextStyle(fontSize: 16),
+                      ),
+                    ],
                   ),
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
-                const Text(
-                  'Problem Images',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
-                ),
-                const SizedBox(height: 5),
-                Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: 200,
-                  padding: const EdgeInsets.all(5),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: kGreyColor.withOpacity(0.5),
-                  ),
+                const SizedBox(height: 20),
+                Center(
                   child: Image.network(
-                      baseUrl + '${controller.complaint?.image ?? ''}'),
+                    baseUrl + (controller.complaint?.image ?? ''),
+                    width: MediaQuery.of(context).size.width * 0.7,
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: kGreyColor.withOpacity(0.3),
+                      border: Border.all(color: kGreyColor)),
+                  child: Text(
+                    'Remarks: ',
+                    style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.grey.shade700),
+                  ),
                 ),
               ],
             ),

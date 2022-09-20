@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-import '../../../data/models/complaints/complaints._response.dart';
+import '../../../data/models/complaints/complaints_response.dart';
 
 class ComplaintDetailController extends GetxController {
   Complaint? complaint;
