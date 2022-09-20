@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tenant_app/app/utils/constants.dart';
 
-import '../../widgets/loading.dart';
+import '../widgets/loading.dart';
 
 void showSnackbar(String message,
     {bool isError = false, bool isBottom = false, Duration? time}) async {
@@ -15,7 +16,7 @@ void showSnackbar(String message,
     isDismissible: true,
     margin: const EdgeInsets.all(10),
     backgroundColor:
-        isError ? Colors.red.shade700.withOpacity(0.75) : Colors.green,
+        isError ? Colors.red.shade700.withOpacity(0.75) : kPrimaryColor,
   );
 }
 
