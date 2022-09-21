@@ -19,9 +19,11 @@ class OwnerDetail {
   String? email;
   bool? isActive;
   String? ownerPhoneNumber;
+  String? id;
 
   OwnerDetail(
-      {this.firstName,
+      {this.id,
+      this.firstName,
       this.lastName,
       this.email,
       this.isActive,
@@ -33,6 +35,8 @@ class OwnerDetail {
     this.email = json["email"];
     this.isActive = json["is_active"];
     this.ownerPhoneNumber = json["owner_phone_number"];
+    this.isActive = json["is_active"];
+    this.id = json["id"].toString();
   }
 
   Map<String, dynamic> toJson() {
@@ -42,6 +46,7 @@ class OwnerDetail {
     data["email"] = this.email;
     data["is_active"] = this.isActive;
     data["owner_phone_number"] = this.ownerPhoneNumber;
+    data["id"] = this.id;
     return data;
   }
 }

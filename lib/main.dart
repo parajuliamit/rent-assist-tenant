@@ -12,6 +12,7 @@ import 'app/app_controller.dart';
 import 'app/app_repository.dart';
 import 'app/routes/app_pages.dart';
 import 'app/utils/constants.dart';
+import 'app/widgets/error_page.dart';
 
 Future<void> _messageHandler(RemoteMessage message) async {
   print('message received');
@@ -82,11 +83,11 @@ class MyApp extends StatelessWidget {
                 )),
             initialRoute: AppPages.INITIAL,
             getPages: AppPages.routes,
-            // unknownRoute: GetPage(
-            //     name: '/notfound',
-            //     page: () => ErrorPage('Page not found.', () {
-            //           Get.back();
-            //         })),
+            unknownRoute: GetPage(
+                name: '/notfound',
+                page: () => ErrorPage('Page not found.', () {
+                      Get.back();
+                    })),
             initialBinding: BindingsBuilder(() {
               Get.lazyPut(() => AppRepository(Dio(), storage));
               Get.put(AppController(), permanent: true);
