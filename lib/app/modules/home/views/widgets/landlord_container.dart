@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tenant_app/app/modules/authentication/otp_verification/views/otp_verification_view.dart';
-import 'package:tenant_app/app/routes/app_pages.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../app_controller.dart';
 import '../../../../utils/constants.dart';
+import '../../../navigation/controllers/navigation_controller.dart';
 import 'homepage_button.dart';
 
 class LandlordContainer extends StatelessWidget {
@@ -71,7 +71,13 @@ class LandlordContainer extends StatelessWidget {
                           textColor: kWhiteColor,
                           fillColor: kPrimaryColor,
                           onpress: () {
-                            Get.toNamed(Routes.SCAN_OWNER);
+                            final Uri launchUri = Uri(
+                              scheme: 'tel',
+                              path: Get.find<AppController>()
+                                  .ownerDetail
+                                  ?.ownerPhoneNumber,
+                            );
+                            launchUrl(launchUri);
                           }),
                     ),
                     const SizedBox(
@@ -83,7 +89,8 @@ class LandlordContainer extends StatelessWidget {
                           textColor: kWhiteColor,
                           fillColor: kPrimaryColor,
                           onpress: () {
-                            Get.to(OtpVerificationView());
+                            Get.find<NavigationController>().changeIndex(1);
+                            // Get.to(OtpVerificationView());
                           }),
                     )
                   ],
