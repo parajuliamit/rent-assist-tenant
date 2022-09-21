@@ -28,11 +28,12 @@ class ComplainRow extends StatelessWidget {
             children: [
               ComplaintContainer(
                 title: const Text(
-                  '4',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
-                ),
-                subtitle: const Text(
-                  'Complaints',
+                  'View\nComplaints',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                      color: kPrimaryColor),
                 ),
                 onPress: () {
                   Get.toNamed(Routes.COMPLAINT);
@@ -49,9 +50,9 @@ class ComplainRow extends StatelessWidget {
                       color: kWhiteColor,
                       boxShadow: [
                         BoxShadow(
-                            color: kPrimaryColor.withOpacity(0.4),
-                            spreadRadius: 3,
-                            blurRadius: 7,
+                            color: kPrimaryColor.withOpacity(0.3),
+                            spreadRadius: 2,
+                            blurRadius: 5,
                             offset: const Offset(1, 2))
                       ]),
                   child: const Icon(
@@ -59,7 +60,7 @@ class ComplainRow extends StatelessWidget {
                   ),
                 ),
                 subtitle: const Text(
-                  'Add New',
+                  'New Complaint',
                   style: TextStyle(
                       fontWeight: FontWeight.bold, color: kPrimaryColor),
                 ),
@@ -77,14 +78,11 @@ class ComplainRow extends StatelessWidget {
 
 class ComplaintContainer extends StatelessWidget {
   const ComplaintContainer(
-      {Key? key,
-      required this.title,
-      required this.subtitle,
-      required this.onPress})
+      {Key? key, required this.title, this.subtitle, required this.onPress})
       : super(key: key);
 
   final Widget title;
-  final Widget subtitle;
+  final Widget? subtitle;
   final VoidCallback onPress;
 
   @override
@@ -112,7 +110,7 @@ class ComplaintContainer extends StatelessWidget {
               const SizedBox(
                 height: 5,
               ),
-              subtitle
+              if (subtitle != null) subtitle!
             ],
           ),
         ),

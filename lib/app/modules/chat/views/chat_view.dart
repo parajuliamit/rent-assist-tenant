@@ -34,9 +34,6 @@ class ChatView extends GetView<ChatController> {
                           },
                         ),
                       ),
-                      const Divider(
-                        thickness: 1,
-                      ),
                       Padding(
                         padding: const EdgeInsets.fromLTRB(15, 5, 5, 10),
                         child: Row(

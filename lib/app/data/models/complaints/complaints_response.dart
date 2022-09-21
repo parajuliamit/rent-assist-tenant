@@ -38,6 +38,8 @@ class Complaint {
   String? date;
   String? urgencyLevel;
   int? tenant;
+  String? status;
+  bool? isSolved;
 
   Complaint(
       {this.id,
@@ -46,6 +48,8 @@ class Complaint {
       this.description,
       this.date,
       this.urgencyLevel,
+      this.isSolved,
+      this.status,
       this.tenant});
 
   Complaint.fromJson(Map<String, dynamic> json) {
@@ -53,21 +57,10 @@ class Complaint {
     if (json["image"] is String) this.image = json["image"];
     if (json["title"] is String) this.title = json["title"];
     if (json["description"] is String) this.description = json["description"];
-    if (json["date"] is String) this.date = json["date"];
-    if (json["urgency_level"] is String)
-      this.urgencyLevel = json["urgency_level"];
-    if (json["tenant"] is int) this.tenant = json["tenant"];
+    this.date = json["date"];
+    this.urgencyLevel = json["urgency_level"];
+    this.tenant = json["tenant"];
+    this.status = json["status"];
+    this.isSolved = json["is_solved"];
   }
-
-  // Map<String, dynamic> toJson() {
-  //   final Map<String, dynamic> data = new Map<String, dynamic>();
-  //   // data["id"] = this.id;
-  //   data["image"] = this.image;
-  //   data["title"] = this.title;
-  //   data["description"] = this.description;
-  //   // data["date"] = this.date;
-  //   data["urgency_level"] = this.urgencyLevel;
-  //   data["tenant"] = this.tenant;
-  //   return data;
-  // }
 }

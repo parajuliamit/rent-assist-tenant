@@ -8,8 +8,8 @@ import '../controllers/complaint_detail_controller.dart';
 class ComplaintDetailView extends GetView<ComplaintDetailController> {
   Color getColor(String urgencyLevel) {
     if (urgencyLevel == "H") return Colors.red;
-    if (urgencyLevel == "I") return Colors.yellow;
-    if (urgencyLevel == "L") return Colors.green;
+    if (urgencyLevel == "I") return Colors.deepOrange;
+    if (urgencyLevel == "L") return Colors.deepPurple;
     return Colors.blueGrey;
   }
 
@@ -44,12 +44,16 @@ class ComplaintDetailView extends GetView<ComplaintDetailController> {
                     const SizedBox(
                       width: 5,
                     ),
-                    const Text(
-                      'Pending',
+                    Text(
+                      controller.complaint?.isSolved == true
+                          ? 'SOLVED'
+                          : 'Pending',
                       style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
-                          color: Colors.blue),
+                          color: controller.complaint?.isSolved == true
+                              ? Colors.green
+                              : Colors.blue),
                     ),
                   ],
                 ),
@@ -120,7 +124,7 @@ class ComplaintDetailView extends GetView<ComplaintDetailController> {
                       color: kGreyColor.withOpacity(0.3),
                       border: Border.all(color: kGreyColor)),
                   child: Text(
-                    'Remarks: ',
+                    'Remarks: ${controller.complaint?.status}',
                     style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w500,

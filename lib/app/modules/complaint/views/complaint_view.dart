@@ -44,14 +44,21 @@ class ComplaintView extends GetView<ComplaintController> {
                       child: Card(
                         margin: const EdgeInsets.all(10),
                         child: ListTile(
-                          leading: Icon(
-                            getIcon(controller.complaints[index].urgencyLevel
-                                .toString()),
-                            size: 30,
-                            color: getColor(controller
-                                .complaints[index].urgencyLevel
-                                .toString()),
-                          ),
+                          leading: controller.complaints[index].isSolved == true
+                              ? const Icon(
+                                  Icons.check_circle,
+                                  size: 30,
+                                  color: Colors.green,
+                                )
+                              : Icon(
+                                  getIcon(controller
+                                      .complaints[index].urgencyLevel
+                                      .toString()),
+                                  size: 30,
+                                  color: getColor(controller
+                                      .complaints[index].urgencyLevel
+                                      .toString()),
+                                ),
                           title: Text(controller.complaints[index].title ?? ''),
                           trailing: const Icon(Icons.chevron_right),
                           subtitle: Text(convertToAgo(DateTime.parse(

@@ -12,33 +12,21 @@ class UserInfo extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.all(20),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Row(
-            children: [
-              const CircleAvatar(
-                radius: 25,
-                child: Icon(
-                  Icons.person,
-                  size: 30,
-                ),
-              ),
-              const SizedBox(
-                width: 15,
-              ),
-              Text(
-                'Hello, ${Get.find<AppController>().profile?.firstName}',
-                style:
-                    const TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
-              ),
-            ],
+          const CircleAvatar(
+            radius: 25,
+            child: Icon(
+              Icons.person,
+              size: 30,
+            ),
           ),
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.notifications_on_outlined),
-            color: kDarkGreen,
-            iconSize: 25,
-          )
+          const SizedBox(
+            width: 15,
+          ),
+          Text(
+            'Hello, ${Get.find<AppController>().profile?.firstName}',
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+          ),
         ],
       ),
     );
