@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 import 'package:get/get.dart';
+import 'package:tenant_app/app/modules/authentication/otp_verification/views/otp_verification_view.dart';
 import 'package:tenant_app/app/utils/constants.dart';
 import 'package:tenant_app/app/widgets/input_field.dart';
 
@@ -70,7 +71,9 @@ class ForgotPasswordView extends GetView {
               ),
               CustomButton(
                 'Reset Password',
-                () {},
+                () {
+                  Get.to(OtpVerificationView());
+                },
                 textColor: Colors.white,
                 fillColor: kPrimaryColor,
               ),
