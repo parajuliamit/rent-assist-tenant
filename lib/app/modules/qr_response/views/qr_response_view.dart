@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:tenant_app/app/utils/app_utils.dart';
 import 'package:tenant_app/app/utils/constants.dart';
 import 'package:tenant_app/app/widgets/custom_button.dart';
 
@@ -88,7 +89,9 @@ class QrResponseView extends GetView<QrResponseController> {
                 ),
               SizedBox(
                   width: MediaQuery.of(context).size.width * 0.75,
-                  child: CustomButton('Accept Agreement', () {}))
+                  child: CustomButton('Accept Agreement', () {
+                    overlayLoading(controller.acceptAgreement);
+                  }))
             ]),
           ),
         ));

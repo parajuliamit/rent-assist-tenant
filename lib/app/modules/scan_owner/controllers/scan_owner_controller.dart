@@ -9,7 +9,7 @@ import 'package:tenant_app/app/utils/app_utils.dart';
 
 class ScanOwnerController extends GetxController {
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
-  Barcode? result;
+
   QRViewController? qrController;
   final userRepo = Get.find<AppRepository>().getUserRepository();
 
@@ -18,20 +18,18 @@ class ScanOwnerController extends GetxController {
   void onQRViewCreated(QRViewController controller) {
     qrController = controller;
     controller.scannedDataStream.listen((scanData) {
-      print(scanData);
-      result = scanData;
-      update();
-      if (result?.code != null) {
-        getQrResponse(result!.code!);
+      int? id = int.tryParse(scanData.code ?? '');
+      if (id != null) {
+        getQrResponse(id);
       }
     });
   }
 
-  Future<void> getQrResponse(String code) async {
+  Future<void> getQrResponse(int id) async {
     qrController?.pauseCamera();
     isLoading(true);
     try {
-      var response = await userRepo.getQrResponse(code);
+      var response = await userRepo.getQrResponse(id.toString());
       await Get.toNamed(Routes.QR_RESPONSE, arguments: response);
     } catch (e) {
       if (e is DioError) {

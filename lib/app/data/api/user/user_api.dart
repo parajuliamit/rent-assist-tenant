@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
+import 'package:tenant_app/app/data/models/user/add_tenant_response.dart';
+import 'package:tenant_app/app/data/models/user/create_agreement_request.dart';
 import 'package:tenant_app/app/data/models/user/owner_detail.dart';
 import 'package:tenant_app/app/data/models/user/qr_response.dart';
 
@@ -23,4 +25,10 @@ abstract class UserApi {
 
   @GET("/api/rooms/{id}/")
   Future<QrResponse> getQrResponse(@Path("id") String id);
+
+  @POST("/api/users/add-tenant/")
+  Future<AddTenantResponse> addTenant(@Body() Map<String, dynamic> body);
+
+  @POST("/api/contract/agreement/")
+  Future<void> createAgreement(@Body() CreateAgreementRequest request);
 }
