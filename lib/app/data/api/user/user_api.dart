@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:tenant_app/app/data/models/user/owner_detail.dart';
+import 'package:tenant_app/app/data/models/user/qr_response.dart';
 
 import '../../models/notifications/notification_response.dart';
 import '../../models/user/profile.dart';
@@ -19,4 +20,7 @@ abstract class UserApi {
 
   @GET("/api/notifications/notification/")
   Future<NotificationResponse> getNotifications();
+
+  @GET("/api/rooms/{id}/")
+  Future<QrResponse> getQrResponse(@Path("id") String id);
 }

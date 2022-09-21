@@ -18,6 +18,8 @@ import '../modules/complaint_detail/bindings/complaint_detail_binding.dart';
 import '../modules/complaint_detail/views/complaint_detail_view.dart';
 import '../modules/navigation/bindings/navigation_binding.dart';
 import '../modules/navigation/views/navigation_view.dart';
+import '../modules/qr_response/bindings/qr_response_binding.dart';
+import '../modules/qr_response/views/qr_response_view.dart';
 import '../modules/scan_owner/bindings/scan_owner_binding.dart';
 import '../modules/scan_owner/views/scan_owner_view.dart';
 import '../modules/splash_screen/bindings/splash_screen_binding.dart';
@@ -97,6 +99,11 @@ class AppPages {
       name: _Paths.COMPLAINT_DETAIL,
       page: () => ComplaintDetailView(),
       binding: ComplaintDetailBinding(),
+    ),
+    GetPage(
+      name: _Paths.QR_RESPONSE,
+      page: () => QrResponseView(),
+      binding: QrResponseBinding(),
     ),
   ];
 }
