@@ -13,8 +13,7 @@ class NotificationView extends GetView<NotificationController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('My Notifications'),
-        centerTitle: true,
+        title: const Text('Notifications'),
       ),
       body: Obx(
         () => controller.isLoading.isTrue
