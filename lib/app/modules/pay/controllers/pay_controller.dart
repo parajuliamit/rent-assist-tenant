@@ -79,6 +79,7 @@ class PayController extends GetxController {
               onSuccess: (successModel) {
                 print(successModel.idx);
                 print(successModel.amount);
+                amountController.clear();
                 Navigator.pop(context);
                 overlayLoading(serverValidate);
               },

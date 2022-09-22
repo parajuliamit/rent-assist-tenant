@@ -54,7 +54,7 @@ class PayView extends GetView<PayController> {
                               : Text(
                                   Get.find<HomeController>().rents.isEmpty
                                       ? 'No Due'
-                                      : 'रू ${Get.find<HomeController>().rents[0].dueAmount}',
+                                      : 'रू ${double.parse(Get.find<HomeController>().rents[0].amountToBePaid ?? '0') - double.parse(Get.find<HomeController>().rents[0].amountPaidThisMonth ?? '0')}',
                                   // textAlign: TextAlign.start,
                                   style: const TextStyle(
                                       fontSize: 25,

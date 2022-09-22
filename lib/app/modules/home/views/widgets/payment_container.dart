@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tenant_app/app/modules/home/controllers/home_controller.dart';
+import 'package:tenant_app/app/modules/navigation/controllers/navigation_controller.dart';
 import 'package:tenant_app/app/routes/app_pages.dart';
 
 import '../../../../utils/constants.dart';
@@ -79,12 +80,15 @@ class PaymentContainer extends StatelessWidget {
                         PaymentRow('Paid Amount',
                             controller.rents[index].amountPaidThisMonth!),
                         PaymentRow(
-                            'Due Amount', controller.rents[index].dueAmount!),
+                            'Previous Due', controller.rents[index].dueAmount!),
                         const SizedBox(
                           height: 5,
                         ),
-                        double.tryParse(
-                                    controller.rents[index].dueAmount ?? '0') ==
+                        double.parse(controller.rents[index].amountToBePaid ??
+                                        '0') -
+                                    double.parse(controller
+                                            .rents[index].amountPaidThisMonth ??
+                                        '0') ==
                                 0
                             ? Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -110,7 +114,10 @@ class PaymentContainer extends StatelessWidget {
                                 text: 'Pay',
                                 textColor: Colors.white,
                                 fillColor: kPrimaryColor,
-                                onpress: () {})
+                                onpress: () {
+                                  Get.find<NavigationController>()
+                                      .changeIndex(2);
+                                })
                       ],
                     ),
                   ),
