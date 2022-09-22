@@ -43,6 +43,11 @@ class ScanOwnerController extends GetxController {
     qrController?.resumeCamera();
   }
 
+  void logout() {
+    Get.find<AppRepository>().getAuthRepository().logout();
+    Get.offAllNamed(Routes.LOGIN);
+  }
+
   @override
   void onInit() {
     super.onInit();

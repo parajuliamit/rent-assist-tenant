@@ -21,23 +21,37 @@ class ScanOwnerView extends GetView<ScanOwnerController> {
                     children: <Widget>[
                       Expanded(
                         flex: 1,
-                        child: Padding(
-                          padding: const EdgeInsets.all(20.0),
-                          child: Column(
-                            children: const [
-                              Expanded(
-                                child: Icon(Icons.roofing_outlined,
-                                    size: 50, color: Colors.white),
+                        child: Stack(
+                          children: [
+                            Container(
+                              width: double.infinity,
+                              padding: const EdgeInsets.all(20.0),
+                              child: Column(
+                                children: const [
+                                  Expanded(
+                                    child: Icon(Icons.roofing_outlined,
+                                        size: 50, color: Colors.white),
+                                  ),
+                                  Text(
+                                    'Scan Owner QR Code',
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.white),
+                                  ),
+                                ],
                               ),
-                              Text(
-                                'Scan Owner QR Code',
-                                style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w500,
-                                    color: Colors.white),
+                            ),
+                            Positioned(
+                              top: 0,
+                              right: 0,
+                              child: IconButton(
+                                icon: const Icon(Icons.logout),
+                                color: Colors.white,
+                                onPressed: controller.logout,
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
                       Expanded(
