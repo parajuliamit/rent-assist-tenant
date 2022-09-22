@@ -87,6 +87,7 @@ class QrResponseView extends GetView<QrResponseController> {
                   padding: const EdgeInsets.all(15.0),
                   child: Image.network(controller.qrResponse.image!),
                 ),
+              const SizedBox(height: 5),
               SizedBox(
                   width: MediaQuery.of(context).size.width * 0.75,
                   child: CustomButton('Accept Agreement', () {
