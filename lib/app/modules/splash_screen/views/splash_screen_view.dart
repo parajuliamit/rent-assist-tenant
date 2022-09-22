@@ -26,7 +26,12 @@ class SplashScreenView extends GetView<SplashScreenController> {
                     Text(
                       'RENT ASSIST',
                       style: TextStyle(fontSize: 35, color: kWhiteColor),
-                    )
+                    ),
+                    SizedBox(height: 10),
+                    Text(
+                      'TENANT',
+                      style: TextStyle(fontSize: 25, color: kWhiteColor),
+                    ),
                   ],
                 )),
         ));

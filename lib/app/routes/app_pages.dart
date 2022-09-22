@@ -16,6 +16,8 @@ import '../modules/complaint/bindings/complaint_binding.dart';
 import '../modules/complaint/views/complaint_view.dart';
 import '../modules/complaint_detail/bindings/complaint_detail_binding.dart';
 import '../modules/complaint_detail/views/complaint_detail_view.dart';
+import '../modules/my_documents/bindings/my_documents_binding.dart';
+import '../modules/my_documents/views/my_documents_view.dart';
 import '../modules/navigation/bindings/navigation_binding.dart';
 import '../modules/navigation/views/navigation_view.dart';
 import '../modules/qr_response/bindings/qr_response_binding.dart';
@@ -104,6 +106,11 @@ class AppPages {
       name: _Paths.QR_RESPONSE,
       page: () => QrResponseView(),
       binding: QrResponseBinding(),
+    ),
+    GetPage(
+      name: _Paths.MY_DOCUMENTS,
+      page: () => MyDocumentsView(),
+      binding: MyDocumentsBinding(),
     ),
   ];
 }

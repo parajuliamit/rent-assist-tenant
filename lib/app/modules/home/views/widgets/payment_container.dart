@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:tenant_app/app/routes/app_pages.dart';
 
 import '../../../../utils/constants.dart';
 import 'homepage_button.dart';
@@ -25,9 +27,13 @@ class PaymentContainer extends StatelessWidget {
               InkWell(
                 child: const Padding(
                   padding: EdgeInsets.all(10.0),
-                  child: Text('History'),
+                  child: Text('History',
+                      style: TextStyle(
+                          color: kPrimaryColor, fontWeight: FontWeight.bold)),
                 ),
-                onTap: () {},
+                onTap: () {
+                  Get.toNamed(Routes.SAVED_PAYMENT);
+                },
               )
             ],
           ),

@@ -5,7 +5,6 @@ import 'package:tenant_app/app/modules/account/widgets/logout_button.dart';
 
 import '../../../routes/app_pages.dart';
 import '../controllers/account_controller.dart';
-import '../saved_payment/views/saved_payment_view.dart';
 import '../widgets/item_tile.dart';
 
 class AccountView extends GetView<AccountController> {
@@ -22,8 +21,15 @@ class AccountView extends GetView<AccountController> {
             child: Column(
           children: [
             ItemTile(
-              icon: Icons.save_alt_rounded,
-              label: 'Saved Payment',
+              icon: Icons.document_scanner,
+              label: 'My Documents',
+              onPress: () {
+                Get.toNamed(Routes.MY_DOCUMENTS);
+              },
+            ),
+            ItemTile(
+              icon: Icons.credit_card,
+              label: 'Payment History',
               onPress: () {
                 Get.toNamed(Routes.SAVED_PAYMENT);
               },
@@ -36,7 +42,7 @@ class AccountView extends GetView<AccountController> {
               },
             ),
             ItemTile(
-              icon: Icons.change_circle_outlined,
+              icon: Icons.password,
               label: 'Change Password',
               onPress: () {
                 Get.toNamed(Routes.CHANGE_PASSWORD);

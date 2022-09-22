@@ -16,6 +16,7 @@ abstract class Routes {
   static const SCAN_OWNER = _Paths.SCAN_OWNER;
   static const COMPLAINT_DETAIL = _Paths.COMPLAINT_DETAIL;
   static const QR_RESPONSE = _Paths.QR_RESPONSE;
+  static const MY_DOCUMENTS = _Paths.MY_DOCUMENTS;
 }
 
 abstract class _Paths {
@@ -33,4 +34,5 @@ abstract class _Paths {
   static const SCAN_OWNER = '/scan-owner';
   static const COMPLAINT_DETAIL = '/complaint-detail';
   static const QR_RESPONSE = '/qr-response';
+  static const MY_DOCUMENTS = '/my-documents';
 }

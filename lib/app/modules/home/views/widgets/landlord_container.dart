@@ -45,7 +45,10 @@ class LandlordContainer extends StatelessWidget {
                     const CircleAvatar(
                       backgroundColor: kGreyColor,
                       radius: 25,
-                      child: Icon(Icons.person),
+                      child: Icon(
+                        Icons.person,
+                        color: Colors.white,
+                      ),
                     ),
                     const SizedBox(
                       width: 10,
@@ -81,7 +84,7 @@ class LandlordContainer extends StatelessWidget {
                           }),
                     ),
                     const SizedBox(
-                      width: 15,
+                      width: 10,
                     ),
                     Expanded(
                       child: HomePageButton(
