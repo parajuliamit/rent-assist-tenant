@@ -7,6 +7,7 @@ import 'package:tenant_app/app/data/models/user/get_agreement_response.dart';
 import 'package:tenant_app/app/data/models/user/owner_detail.dart';
 import 'package:tenant_app/app/data/models/user/profile.dart';
 import 'package:tenant_app/app/data/models/user/qr_response.dart';
+import 'package:tenant_app/app/data/models/user/rent_response.dart';
 
 import '../api/user/user_api.dart';
 import '../models/user/add_tenant_response.dart';
@@ -54,5 +55,9 @@ class UserRepository {
 
   Future<GetAgreementResponse> getAgreement() async {
     return await UserApi(_dio).getAgreement();
+  }
+
+  Future<List<RentResponse>> getRent() {
+    return UserApi(_dio).getRent();
   }
 }
