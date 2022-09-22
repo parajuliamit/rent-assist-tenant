@@ -39,7 +39,7 @@ class ChatController extends GetxController {
     messageController = TextEditingController();
     loadMessage();
     timer = Timer.periodic(const Duration(seconds: 10), (_) {
-      loadMessage();
+      // loadMessage();
     });
   }
 

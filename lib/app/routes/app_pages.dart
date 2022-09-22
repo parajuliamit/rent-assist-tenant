@@ -20,6 +20,8 @@ import '../modules/my_documents/bindings/my_documents_binding.dart';
 import '../modules/my_documents/views/my_documents_view.dart';
 import '../modules/navigation/bindings/navigation_binding.dart';
 import '../modules/navigation/views/navigation_view.dart';
+import '../modules/pdf_screen/bindings/pdf_screen_binding.dart';
+import '../modules/pdf_screen/views/pdf_screen_view.dart';
 import '../modules/qr_response/bindings/qr_response_binding.dart';
 import '../modules/qr_response/views/qr_response_view.dart';
 import '../modules/scan_owner/bindings/scan_owner_binding.dart';
@@ -116,6 +118,11 @@ class AppPages {
     GetPage(
       name: _Paths.VIEW_AGREEMENT,
       page: () => ViewAgreementView(),
+    ),
+    GetPage(
+      name: _Paths.PDF_SCREEN,
+      page: () => PdfScreenView(),
+      binding: PdfScreenBinding(),
     ),
   ];
 }

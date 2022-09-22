@@ -18,6 +18,7 @@ abstract class Routes {
   static const QR_RESPONSE = _Paths.QR_RESPONSE;
   static const MY_DOCUMENTS = _Paths.MY_DOCUMENTS;
   static const VIEW_AGREEMENT = _Paths.VIEW_AGREEMENT;
+  static const PDF_SCREEN = _Paths.PDF_SCREEN;
 }
 
 abstract class _Paths {
@@ -37,4 +38,5 @@ abstract class _Paths {
   static const QR_RESPONSE = '/qr-response';
   static const MY_DOCUMENTS = '/my-documents';
   static const VIEW_AGREEMENT = '/view-agreement';
+  static const PDF_SCREEN = '/pdf-screen';
 }
