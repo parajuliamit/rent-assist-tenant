@@ -19,3 +19,13 @@ String convertToAgo(DateTime input) {
     return 'Just now';
   }
 }
+
+String? daysRemaining(DateTime input) {
+  Duration diff = input.difference(DateTime.now());
+
+  if (diff.inDays > 1) {
+    return '${diff.inDays}';
+  } else {
+    return null;
+  }
+}

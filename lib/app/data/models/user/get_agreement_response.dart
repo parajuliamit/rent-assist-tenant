@@ -20,6 +20,7 @@ class Agreement {
   int? nagarpalikaFohrPrice;
   int? electricityRate;
   String? picture;
+  String? deadline;
 
   Agreement(
       {this.price,
@@ -28,6 +29,7 @@ class Agreement {
       this.waterUsagePrice,
       this.nagarpalikaFohrPrice,
       this.electricityRate,
+      this.deadline,
       this.picture});
 
   Agreement.fromJson(Map<String, dynamic> json) {
@@ -38,5 +40,6 @@ class Agreement {
     this.nagarpalikaFohrPrice = json["nagarpalika_fohr_price"];
     this.electricityRate = json["electricity_rate"];
     this.picture = json["picture"];
+    this.deadline = json["deadline"];
   }
 }

@@ -7,7 +7,7 @@ import 'package:tenant_app/app/data/models/user/get_agreement_response.dart';
 class ViewAgreementController extends GetxController {
   final userRepo = Get.find<AppRepository>().getUserRepository();
 
-  GetAgreementResponse? agreement;
+  Agreement? agreement;
   final isLoading = false.obs;
   final isError = false.obs;
 
@@ -23,7 +23,7 @@ class ViewAgreementController extends GetxController {
     isLoading.value = true;
     isError.value = false;
     try {
-      agreement = await userRepo.getAgreement();
+      agreement = (await userRepo.getAgreement()).data;
       update();
     } catch (e) {
       isError.value = true;
