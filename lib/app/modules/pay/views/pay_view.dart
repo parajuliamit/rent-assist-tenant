@@ -5,6 +5,7 @@ import 'package:khalti_flutter/khalti_flutter.dart';
 import 'package:tenant_app/app/utils/constants.dart';
 import 'package:tenant_app/app/widgets/widgets.dart';
 
+import '../../home/controllers/home_controller.dart';
 import '../controllers/pay_controller.dart';
 
 class PayView extends GetView<PayController> {
@@ -36,8 +37,8 @@ class PayView extends GetView<PayController> {
                           borderRadius: BorderRadius.circular(15)),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
-                          Text(
+                        children: [
+                          const Text(
                             'Total Due : ',
                             style: TextStyle(
                               fontSize: 18,
@@ -45,17 +46,19 @@ class PayView extends GetView<PayController> {
                               fontWeight: FontWeight.w500,
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
-                          Text(
-                            'रू 50000',
-                            // textAlign: TextAlign.start,
-                            style: TextStyle(
-                                fontSize: 25,
-                                fontWeight: FontWeight.bold,
-                                color: kDarkGreen),
-                          ),
+                          Obx(() => Get.find<HomeController>().isLoading.isTrue
+                              ? const SizedBox()
+                              : Text(
+                                  'रू ${Get.find<HomeController>().rents[0].dueAmount}',
+                                  // textAlign: TextAlign.start,
+                                  style: const TextStyle(
+                                      fontSize: 25,
+                                      fontWeight: FontWeight.bold,
+                                      color: kDarkGreen),
+                                )),
                         ],
                       ),
                     ),

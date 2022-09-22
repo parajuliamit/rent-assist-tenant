@@ -1,14 +1,19 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:khalti_flutter/khalti_flutter.dart';
+import 'package:tenant_app/app/app_repository.dart';
+import 'package:tenant_app/app/data/exception/server_exception.dart';
+import 'package:tenant_app/app/data/models/transaction/payment_request.dart';
+import 'package:tenant_app/app/modules/home/controllers/home_controller.dart';
 import 'package:tenant_app/app/utils/app_utils.dart';
 
 import '../../../utils/constants.dart';
 
 class PayController extends GetxController {
   late final TextEditingController amountController;
-
+  final transactionRepo = Get.find<AppRepository>().getTransactionRepository();
   // final config = PaymentConfig(
   //   amount: int.parse(amountController.text.trim()), // Amount should be in paisa
   //   productIdentity: 'dell-g5-g5510-2021',
@@ -74,17 +79,35 @@ class PayController extends GetxController {
               onSuccess: (successModel) {
                 print(successModel.idx);
                 print(successModel.amount);
-                // Perform Server Verification
+                Navigator.pop(context);
+                overlayLoading(serverValidate);
               },
               onFailure: (failureModel) {
-                // What to do on failure?
+                Navigator.pop(context);
+                showSnackbar(failureModel.message, isError: true);
               },
               onCancel: () {
-                // User manually cancelled the transaction
+                Navigator.pop(context);
               },
             ),
           );
         });
+  }
+
+  Future<void> serverValidate() async {
+    try {
+      await transactionRepo.makeTransaction(PaymentRequest(
+          paidAmount: int.parse(amountController.text.trim()) * 100));
+      showSnackbar('Payment Successful');
+      Get.find<HomeController>().getRents();
+    } catch (e) {
+      if (e is DioError) {
+        showSnackbar(ServerError.withError(error: e).getErrorMessage(),
+            isError: true);
+      } else {
+        showSnackbar(e.toString(), isError: true);
+      }
+    }
   }
 
   @override
