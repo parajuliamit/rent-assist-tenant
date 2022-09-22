@@ -52,7 +52,9 @@ class PayView extends GetView<PayController> {
                           Obx(() => Get.find<HomeController>().isLoading.isTrue
                               ? const SizedBox()
                               : Text(
-                                  'रू ${Get.find<HomeController>().rents[0].dueAmount}',
+                                  Get.find<HomeController>().rents.isEmpty
+                                      ? 'No Due'
+                                      : 'रू ${Get.find<HomeController>().rents[0].dueAmount}',
                                   // textAlign: TextAlign.start,
                                   style: const TextStyle(
                                       fontSize: 25,
