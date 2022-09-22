@@ -26,6 +26,7 @@ import '../modules/scan_owner/bindings/scan_owner_binding.dart';
 import '../modules/scan_owner/views/scan_owner_view.dart';
 import '../modules/splash_screen/bindings/splash_screen_binding.dart';
 import '../modules/splash_screen/views/splash_screen_view.dart';
+import '../modules/view_agreement/views/view_agreement_view.dart';
 
 part 'app_routes.dart';
 
@@ -111,6 +112,10 @@ class AppPages {
       name: _Paths.MY_DOCUMENTS,
       page: () => MyDocumentsView(),
       binding: MyDocumentsBinding(),
+    ),
+    GetPage(
+      name: _Paths.VIEW_AGREEMENT,
+      page: () => ViewAgreementView(),
     ),
   ];
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
+import '../../../../routes/app_pages.dart';
 import '../../../../utils/constants.dart';
 import 'homepage_button.dart';
 
@@ -71,10 +73,12 @@ class ContractContainer extends StatelessWidget {
                   height: 10,
                 ),
                 HomePageButton(
-                    text: 'View Contract',
+                    text: 'View Agreement',
                     textColor: kWhiteColor,
                     fillColor: kPrimaryColor,
-                    onpress: () {}),
+                    onpress: () {
+                      Get.toNamed(Routes.VIEW_AGREEMENT);
+                    }),
               ],
             ),
           ),

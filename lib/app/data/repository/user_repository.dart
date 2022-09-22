@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:tenant_app/app/data/models/user/create_agreement_request.dart';
 import 'package:tenant_app/app/data/models/user/document_response.dart';
+import 'package:tenant_app/app/data/models/user/get_agreement_response.dart';
 import 'package:tenant_app/app/data/models/user/owner_detail.dart';
 import 'package:tenant_app/app/data/models/user/profile.dart';
 import 'package:tenant_app/app/data/models/user/qr_response.dart';
@@ -49,5 +50,9 @@ class UserRepository {
     return (await UserApi(_dio).getDocuments()).firstWhere(
         (element) => element.user == user,
         orElse: () => DocumentResponse());
+  }
+
+  Future<GetAgreementResponse> getAgreement() async {
+    return await UserApi(_dio).getAgreement();
   }
 }

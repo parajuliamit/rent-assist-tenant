@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:tenant_app/app/modules/view_agreement/controllers/view_agreement_controller.dart';
 
 import '../../account/controllers/account_controller.dart';
 import '../../chat/controllers/chat_controller.dart';
@@ -27,6 +28,9 @@ class NavigationBinding extends Bindings {
     );
     Get.lazyPut<AccountController>(
       () => AccountController(),
+    );
+    Get.put(
+      ViewAgreementController(),
     );
   }
 }

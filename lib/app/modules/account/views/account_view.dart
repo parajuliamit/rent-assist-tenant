@@ -21,6 +21,13 @@ class AccountView extends GetView<AccountController> {
             child: Column(
           children: [
             ItemTile(
+              icon: Icons.menu,
+              label: 'View Agreement',
+              onPress: () {
+                Get.toNamed(Routes.VIEW_AGREEMENT);
+              },
+            ),
+            ItemTile(
               icon: Icons.document_scanner,
               label: 'My Documents',
               onPress: () {

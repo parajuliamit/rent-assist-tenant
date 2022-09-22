@@ -17,6 +17,7 @@ abstract class Routes {
   static const COMPLAINT_DETAIL = _Paths.COMPLAINT_DETAIL;
   static const QR_RESPONSE = _Paths.QR_RESPONSE;
   static const MY_DOCUMENTS = _Paths.MY_DOCUMENTS;
+  static const VIEW_AGREEMENT = _Paths.VIEW_AGREEMENT;
 }
 
 abstract class _Paths {
@@ -35,4 +36,5 @@ abstract class _Paths {
   static const COMPLAINT_DETAIL = '/complaint-detail';
   static const QR_RESPONSE = '/qr-response';
   static const MY_DOCUMENTS = '/my-documents';
+  static const VIEW_AGREEMENT = '/view-agreement';
 }
