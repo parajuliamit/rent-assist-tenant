@@ -39,6 +39,7 @@ class AppController extends GetxController {
   }
 
   void showNotification(RemoteMessage event) {
+    if ((event.notification!.body ?? '').contains('has been addressed')) return;
     Get.snackbar(
       event.notification!.title ?? '',
       event.notification!.body ?? '',

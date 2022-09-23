@@ -20,6 +20,8 @@ class AddComplaintController extends GetxController {
   final titleError = ''.obs;
   final descriptionError = ''.obs;
 
+  final isLoading = false.obs;
+
   File? image;
 
   @override
@@ -42,6 +44,7 @@ class AddComplaintController extends GetxController {
     if (!validateInput(title, description)) {
       return;
     }
+    isLoading(true);
     try {
       await complaintRepo.addComplaint(
           Complaint(
@@ -64,6 +67,7 @@ class AddComplaintController extends GetxController {
         showSnackbar(e.toString(), isError: true);
       }
     }
+    isLoading(false);
   }
 
   bool validateInput(String title, String description) {
