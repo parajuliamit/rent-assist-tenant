@@ -26,7 +26,7 @@ class ComplaintController extends GetxController {
     try {
       var response = await appRepo.getComplaintsRepository().getComplaints();
       response.sort((a, b) => b.id!.compareTo(a.id!));
-      complaints = response.reversed.toList();
+      complaints = response;
     } catch (e) {
       print(e);
       isError(true);
