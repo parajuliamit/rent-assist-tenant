@@ -43,20 +43,22 @@ class ComplainRow extends StatelessWidget {
                 width: 20,
               ),
               ComplaintContainer(
-                title: Container(
-                  padding: const EdgeInsets.all(5),
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: kWhiteColor,
-                      boxShadow: [
-                        BoxShadow(
-                            color: kPrimaryColor.withOpacity(0.3),
-                            spreadRadius: 2,
-                            blurRadius: 5,
-                            offset: const Offset(1, 2))
-                      ]),
-                  child: const Icon(
-                    Icons.add,
+                title: Expanded(
+                  child: Container(
+                    padding: const EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: kWhiteColor,
+                        boxShadow: [
+                          BoxShadow(
+                              color: kPrimaryColor.withOpacity(0.3),
+                              spreadRadius: 2,
+                              blurRadius: 5,
+                              offset: const Offset(1, 2))
+                        ]),
+                    child: const Icon(
+                      Icons.add,
+                    ),
                   ),
                 ),
                 subtitle: const Text(
