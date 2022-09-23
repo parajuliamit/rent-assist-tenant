@@ -27,15 +27,13 @@ class ComplainRow extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               ComplaintContainer(
-                title: const FittedBox(
-                  child: Text(
-                    'View\nComplaints',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                        color: kPrimaryColor),
-                  ),
+                title: const Text(
+                  'View\nComplaints',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 17,
+                      color: kPrimaryColor),
                 ),
                 onPress: () {
                   Get.toNamed(Routes.COMPLAINT);
@@ -61,12 +59,10 @@ class ComplainRow extends StatelessWidget {
                     Icons.add,
                   ),
                 ),
-                subtitle: const FittedBox(
-                  child: Text(
-                    'New Complaint',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold, color: kPrimaryColor),
-                  ),
+                subtitle: const Text(
+                  'Add New',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold, color: kPrimaryColor),
                 ),
                 onPress: () {
                   Get.toNamed(Routes.ADD_COMPLAINT);
